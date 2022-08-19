@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Product;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -24,13 +29,35 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = User::count();
+        $lastTransId = Transaction::select('transactionId')->latest()->first();
+        return view('home', compact('lastTransId'));
+    }
 
-        $widget = [
-            'users' => $users,
-            //...
-        ];
+    public function adminHome()
+    {
 
-        return view('home', compact('widget'));
+        return view('/admin/home');
+    }
+
+    public function saveTransaction(Request $request)
+    {
+        $date = Carbon::now();
+
+        $transid = $request->transactionId;
+        $price = $request->price;
+        $qty = $request->qty;
+        $subtotal = $request->subtotal;
+
+        for($i=0; $i< count($qty); $i++){
+            $datasave = [
+                'transactionId' => $transid,
+                'price' => $price[$i],
+                'qty' => $qty[$i],
+                'subTotal' => $subtotal[$i],
+                'created_at' => $date
+            ];
+         DB::table('transactions')->insert($datasave);
+        }
+        return response()->json(['success'=>'Transaction saved successfully.']);
     }
 }
