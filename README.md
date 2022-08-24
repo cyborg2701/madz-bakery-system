@@ -1,4 +1,4 @@
-# Laravel SB Admin 2
+# Maderazo's Bakery
 
 Maderazo's Bakery Sales Monitoring System using Laravel 9
 
