@@ -50,6 +50,11 @@
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>{{ __('Dashboard') }}</span></a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.categories') }}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>{{ __('Category') }}</span></a>
+        </li>
 
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.products') }}">

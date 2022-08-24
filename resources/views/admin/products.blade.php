@@ -5,6 +5,8 @@
     <div class="text-right">
     <!-- Button trigger modal -->
         <a href="javascript:void(0)" class="btn btn-primary" btn-sm id="addProduct">Add Product</a>
+        <a href="javascript:void(0)" class="btn btn-danger" btn-sm id="optimize">Clear</a>
+
     </div>
     <div class="mt-2">
         <table class="table table-bordered data-table nowrap" style="width:100%">
@@ -13,7 +15,7 @@
                 <td class="text-center">No.</td>
                 <td class="text-center">Product Name</td>
                 <td class="text-center">Price</td>
-                <td class="text-center">Quantity</td>
+                <td class="text-center">Category</td>
                 <td>Action</td>
                 </tr>
             </thead>
@@ -23,11 +25,11 @@
 
     {{-- add modal --}}
 
-        <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+        <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addModalLabel">Product Information</h5>
+                <h5 class="modal-title" id="addModalTitle">Add Product</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">×</span>
                 </button>
@@ -48,21 +50,15 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="prod_qty" class="col-sm-2 col-form-label">Quantity:</label>
-                        <div class="col-sm-4">
-                            <div class="input-group ">
-                            <span class="input-group-prepend">
-                                <button type="button" class="btn btn-outline-secondary btn-number" disabled="disabled" data-type="minus" data-field="prodQty">
-                                    <span class="fa fa-minus"></span>
-                                </button>
-                            </span>
-                            <input type="text" name="prodQty"   class="form-control input-number" value="0" min="1" max="50">
-                            <span class="input-group-append">
-                                <button type="button" class="btn btn-outline-secondary btn-number" data-type="plus" data-field="prodQty">
-                                    <span class="fa fa-plus"></span>
-                                </button>
-                            </span>
-                        </div>
+                        <label for="prodCategory" class="col-sm-2 col-form-label">Category:</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" id="prodCategory" name="prodCategory" >
+                                <option value="">Select Category</option>
+                                @foreach ($categories as $item)
+
+                                    <option value="{{$item->categoryName}}">{{$item->categoryName}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                   </form>
@@ -97,7 +93,7 @@ $(document).ready(function(){
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
             {data: 'prodName', name: 'prodName', class:'text-capitalize'},
             {data: 'prodPrice', name: 'prodPrice', class:'text-right'},
-            {data: 'prodQty', name: 'prodQty', class:'text-right'},
+            {data: 'prodCategory', name: 'prodCategory', class:'text-right'},
             {data: 'action', name: 'action', orderable: false, searchable: false, class:'text-center'},
         ]
     });
@@ -116,7 +112,7 @@ $(document).ready(function(){
         e.preventDefault();
         $.ajax({
             data: $('#productForm').serialize(),
-            url: "{{ url('admin/store') }}",
+            url: "{{ url('admin/product/store') }}",
             type: "POST",
             dataType: 'json',
             success: function (data) {
@@ -133,13 +129,38 @@ $(document).ready(function(){
     });
 
 
-    // DELETE 
+    // edit modal
+     // EDIT
+     $('body').on('click', '.editProduct', function () {
+                $('#savedata').html('Update');
+                $('#addModalTitle').html('Edit Employee');
+                var id = $(this).data('id');
+                $.ajax({
+                    type:"GET",
+                    url: "{{ url('admin/product/edit') }}",
+                    data: { id: id },
+                    dataType: 'json',
+                    success: function(data){
+                        $('#modelHeading').html("Edit Product");
+                        $('#addModal').modal('show');
+                        $('#id').val(data.id);
+                        $('#prodName').val(data.prodName);
+                        $('#prodPrice').val(data.prodPrice);
+                        $('#prodCategory').prop('selected', true).val(data.prodCategory);;
+                    }
+                });
+
+            });
+
+
+
+    // DELETE  
     $('body').on('click', '.deleteProduct', function () {
       var id = $(this).data("id");
         if (confirm("Are You sure want to delete this product?") === true) {
             $.ajax({
                 type: "DELETE",
-                url: "{{ url('admin/destroy') }}",
+                url: "{{ url('admin/product/destroy') }}",
                 data:{
                   id:id
                 },
@@ -155,87 +176,27 @@ $(document).ready(function(){
 
     });
 
-
-
-
-
-
-
-
-
-
-
-        $('.btn-number').click(function(e){
-        e.preventDefault();
-        
-        fieldName = $(this).attr('data-field');
-        type      = $(this).attr('data-type');
-        var input = $("input[name='"+fieldName+"']");
-        var currentVal = parseInt(input.val());
-        if (!isNaN(currentVal)) {
-            if(type == 'minus') {
-                
-                if(currentVal > input.attr('min')) {
-                    input.val(currentVal - 1).change();
-                } 
-                if(parseInt(input.val()) == input.attr('min')) {
-                    $(this).attr('disabled', true);
+    $('body').on('click', '#optimize', function () {
+      var id = $(this).data("id");
+        if (confirm("Are You sure want to optimize transactions table?") === true) {
+            $.ajax({
+                type: "DELETE",
+                url: "{{ url('admin/product/optimize') }}",
+                data:{
+                  id:id
+                },
+                success: function (data) {
+                  table.draw();
+                  toastr.success('Transactions table optimized successfully','Success');
+                },
+                error: function (data) {
+                  toastr.error(data['responseJSON']['message'],'Error has occured');
                 }
-
-            } else if(type == 'plus') {
-
-                if(currentVal < input.attr('max')) {
-                    input.val(currentVal + 1).change();
-                }
-                if(parseInt(input.val()) == input.attr('max')) {
-                    $(this).attr('disabled', true);
-                }
-
-            }
-        } else {
-            input.val(0);
+            });
         }
-        });
-        $('.input-number').focusin(function(){
-        $(this).data('oldValue', $(this).val());
-        });
-        $('.input-number').change(function() {
-            
-            minValue =  parseInt($(this).attr('min'));
-            maxValue =  parseInt($(this).attr('max'));
-            valueCurrent = parseInt($(this).val());
-            
-            name = $(this).attr('name');
-            if(valueCurrent >= minValue) {
-                $(".btn-number[data-type='minus'][data-field='"+name+"']").removeAttr('disabled')
-            } else {
-                alert('Sorry, the minimum value was reached');
-                $(this).val($(this).data('oldValue'));
-            }
-            if(valueCurrent <= maxValue) {
-                $(".btn-number[data-type='plus'][data-field='"+name+"']").removeAttr('disabled')
-            } else {
-                alert('Sorry, the maximum value was reached');
-                $(this).val($(this).data('oldValue'));
-            }
-        });
 
-        $(".input-number").keydown(function (e) {
-            // Allow: backspace, delete, tab, escape, enter and .
-            if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 190]) !== -1 ||
-                // Allow: Ctrl+A
-                (e.keyCode == 65 && e.ctrlKey === true) || 
-                // Allow: home, end, left, right
-                (e.keyCode >= 35 && e.keyCode <= 39)) {
-                    // let it happen, don't do anything
-                    return;
-            }
-            // Ensure that it is a number and stop the keypress
-            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
-                e.preventDefault();
-            }
-        });
     });
+});
 
 </script>
 @endsection

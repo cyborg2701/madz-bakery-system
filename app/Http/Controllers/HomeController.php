@@ -29,7 +29,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+
         $lastTransId = Transaction::select('transactionId')->latest()->first();
+
         return view('home', compact('lastTransId'));
     }
 
@@ -47,6 +49,15 @@ class HomeController extends Controller
         $price = $request->price;
         $qty = $request->qty;
         $subtotal = $request->subtotal;
+
+        // $collection = collect([
+        //     'transactionId' => $transid,
+        //         'price' => $price,
+        //         'qty' => $qty,
+        //         'subTotal' => $subtotal,
+        //         'created_at' => $date
+        // ]);
+        // DB::table('transactions')->insert($collection);
 
         for($i=0; $i< count($qty); $i++){
             $datasave = [

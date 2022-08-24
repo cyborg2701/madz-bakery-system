@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Product;
+use App\Models\Category;
+use App\Models\Transaction;
 use DataTables;
 
 
@@ -17,9 +19,10 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
+        $categories = Category::all();
         $products = [];
         if($request->ajax()) {
-            $products = Product::latest()->get();
+            $products = Product::all();
             return DataTables::of($products)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
@@ -30,7 +33,7 @@ class ProductController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        return view('admin/products', compact('products'));
+        return view('admin/products', compact('products', 'categories'));
     }
 
     /**
@@ -54,12 +57,15 @@ class ProductController extends Controller
         $request->validate([
             'prodName' => 'required',
             'prodPrice' => 'required',
+            'prodCategory' => 'required',
         ]);
 
-        $products = Product::create([
+        $products = Product::updateOrCreate([
+            'id' => $request->id],
+            [
             'prodName' => $request->prodName,
             'prodPrice' => $request->prodPrice,
-            'prodQty' => $request->prodQty
+            'prodCategory' => $request->prodCategory
         ]);
         return response()->json(['success'=>'Employee saved successfully.']);
     }
@@ -81,9 +87,13 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        $where = [
+            'id' => $request->id
+        ];
+        $products  = Product::where($where)->first();
+        return response()->json($products,);
     }
 
     /**
@@ -93,9 +103,14 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $products = Product::where('id', '=' ,$request->id)->first();
+
+        $products->prodName = $request->prodName;
+        $products->prodPrice = $request->prodPrice;
+        $products->prodCategory = $request->prodCategory;
+        $products->save();
     }
 
     /**
@@ -107,6 +122,14 @@ class ProductController extends Controller
     public function destroy(Request $request)
     {
         $products = Product::where('id', $request->id)->delete();
+        return response()->json([
+            'success'=>'Product deleted successfully.'
+        ]);
+    }
+
+    public function optimize(Transaction $transaction)
+    {
+        $transactions = Transaction::where('qty', 0)->delete();
         return response()->json([
             'success'=>'Product deleted successfully.'
         ]);

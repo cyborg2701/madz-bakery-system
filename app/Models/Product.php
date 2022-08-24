@@ -11,6 +11,12 @@ class Product extends Model
     protected $fillable = [ 
         'prodName', 
         'prodPrice', 
-        'prodQty'
+        'prodCategory'
     ];
+
+    public static function getProdPrice($id) {
+        return Product::where('id', $id)
+                    ->pluck('prodPrice')
+                    ->first();
+    }
 }

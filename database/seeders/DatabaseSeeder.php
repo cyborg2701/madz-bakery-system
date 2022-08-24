@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         Transaction::create([
             'transactionId' => 22000000,
             'price' => 0,
-            'qty' => 0,
+            'qty' => 1,
             'subTotal' => 0
         ]);
     }
