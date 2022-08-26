@@ -55,28 +55,42 @@
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>{{ __('Category') }}</span></a>
         </li>
-
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.products') }}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>{{ __('Products') }}</span></a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>{{ __('Sales') }}</span></a>
-        </li>
         
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{ route('admin.cashout') }}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>{{ __('Cashout') }}</span></a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{ route('admin.expenditures') }}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>{{ __('Inventory') }}</span></a>
+                <span>{{ __('Expenditures') }}</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.cash') }}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>{{ __('Cash') }}</span></a>
+        </li>
+
+
+                 <!-- Divider -->
+         <hr class="sidebar-divider">
+
+         <!-- Heading -->
+         <div class="sidebar-heading">
+             {{ __('Reports') }}
+         </div> 
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.sales') }}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>{{ __('Sales') }}</span></a>
         </li>
 
 

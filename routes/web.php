@@ -4,6 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CashoutController;
+use App\Http\Controllers\ExpenditureController;
+use App\Http\Controllers\SalesController;
+use App\Http\Controllers\CashController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +51,25 @@ Route::group(['prefix' => 'admin', 'middleware' => ['is_admin']], function(){
     Route::post('category/store', [CategoryController::class, 'store'])->name('admin.category.store');
 
 
-   
+    // cashout controller
+    Route::get('cashouts', [CashoutController::class, 'index'])->name('admin.cashout');
+    Route::post('cashouts/store', [CashoutController::class, 'store'])->name('admin.cashout.store');
+
+    // expenditure Controller
+    Route::get('expenditures', [ExpenditureController::class, 'index'])->name('admin.expenditures');
+    Route::post('expenditures/store', [ExpenditureController::class, 'store'])->name('admin.expenditure.store');
+    Route::get('expenditures/edit', [ExpenditureController::class, 'edit'])->name('admin.expenditure.edit');
+    Route::delete('expenditures/destroy', [ExpenditureController::class, 'destroy'])->name('admin.expenditure.destroy');
+
+
+    // sales Controller
+    Route::get('sales', [SalesController::class, 'index'])->name('admin.sales');
+
+
+       // cashController
+       Route::get('cash', [CashController::class, 'index'])->name('admin.cash');
+       Route::post('cash/store', [CashController::class, 'store'])->name('admin.cash.store');
+
+
 });
 Auth::routes();

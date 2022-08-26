@@ -18,7 +18,7 @@ return new class extends Migration
             $table->bigInteger('transactionId');
             $table->decimal('price');
             $table->smallInteger('qty');
-            $table->decimal('subTotal');
+            $table->decimal('subTotal', 65,2);
             $table->timestamps();
         });
     }

@@ -1,5 +1,20 @@
 $(document).ready(function(){
+    //detect input if focus
+    // $('#qty1').focus(function(){
+    //     $(this).val("");
+        
+    // });
 
+    // $('#qty2').focus(function(){
+    //     $(this).val("");
+    // });
+
+
+
+
+
+
+    // detech subtotal 1 
     $('#subTotal1').on('input', function(){
         getTotal();
     });
