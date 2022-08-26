@@ -67,8 +67,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['is_admin']], function(){
 
 
        // cashController
-       Route::get('cash', [CashController::class, 'index'])->name('admin.cash');
-       Route::post('cash/store', [CashController::class, 'store'])->name('admin.cash.store');
+    Route::get('cash', [CashController::class, 'index'])->name('admin.cash');
+    Route::post('cash/store', [CashController::class, 'store'])->name('admin.cash.store');
 
 
 });
