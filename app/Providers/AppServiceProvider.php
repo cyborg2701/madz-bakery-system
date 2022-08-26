@@ -29,7 +29,9 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
 
-    
+        if($this->app->environment('production')) {
+            \URL::forceScheme('https');
+        }
 
         Blade::directive('money', function ($amount) {
             return "<?php echo '₱' . number_format($amount, 2); ?>";
