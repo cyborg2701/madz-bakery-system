@@ -62,7 +62,7 @@
             <div class="input-group">
                 {{-- discount title --}}
                 <span class="input-group-prepend">
-                    <input type="text"  class="form-control form-control-lg text-center btn-success m-1" value="INPUT AMOUNT" disabled>
+                    <input type="button"  class="form-control form-control-lg text-center btn-success m-1" value="INPUT AMOUNT" disabled>
                 </span>
                 <input type="number" id="manualInput"  class="form-control form-control-lg text-right m-1 num" value="0" >
             </div>
