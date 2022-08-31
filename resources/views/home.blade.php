@@ -34,7 +34,7 @@
     <input type="hidden" name="price[]" value="40" id="price7">
     <input type="hidden" name="price[]" value="45" id="price8">
     <input type="hidden" name="price[]" value="55" id="price9">
-    <input type="hidden" name="price[]" value="55" id="price10">
+    <input type="hidden" name="price[]" value="100" id="price10">
     {{-- <input type="hidden" name="price[]" value="{{App\Models\Product::getProdPrice(4)}}" id="price10">
     <input type="hidden" name="price[]" value="{{App\Models\Product::getProdPrice(16)}}" id="price11">
     <input type="hidden" name="price[]" value="{{App\Models\Product::getProdPrice(14)}}" id="price12">
