@@ -3,20 +3,22 @@
 @section('content')
 <form action="" id="transactionForm" name="transactionForm" enctype="multipart/form-data">
 <div class="d-flex justify-content-center mb-2">
-    <div class="col-md-3">
+    <div class="col-md-5">
         <div class="input-group">
             <span class="input-group-prepend">
                 <button type="button" class="btn btn-info" id="btnTotal">
                     TOTAL
                 </button>
             </span>
-            {{-- <input type="text" name="dailyTotal" value="{{$currentSales}}"  class="form-control form-control-lg form-control form-control-lg-lg  text-right" readonly> --}}
-                <span></span><input type="text" name="total" id="total"  class="form-control form-control-lg form-control form-control-lg-lg  text-right" readonly>
+            <span class="input-group-prepend">
+                <input type="text" name="total" id="total"  class="form-control form-control-lg form-control form-control-lg-lg  text-right" readonly>
+            </span>
+            <span class="input-group-prepend">
+                <button id="saveTransaction" name="saveTransaction" type="button" class="btn btn-primary btn-lg ml-5 btn-block" style="width:100%">Save</button>
+            </span>
+
+               
         </div>
-        
-    </div>
-    <div class="col-md-2">
-       
     </div>
 </div>
 {{-- accordion 1 --}}
@@ -59,23 +61,23 @@
         {{-- ASSORTED BREAD CATEGORY --}}
         <div class="col-md-5">
             {{-- TITLE --}}
-            <span class="badge bg-primary m-2 text-white">ASSORTED BREAD</span>
+            <span class="badge bg-primary text-white">ASSORTED BREAD</span>
             
             <div class="input-group">
                 {{-- discount title --}}
-                <span class="input-group-prepend m-2">
-                    <input type="button"  class="form-control text-left btn-success" value="%" disabled>
+                <span class="input-group-prepend">
+                    <input type="button"  class="form-control text-left btn-sucess m-1" value="%" disabled>
                 </span>
                 {{-- SRP --}}
-                <span class="input-group-prepend m-2">
-                    <input type="button"  class="form-control text-left btn-success" value="Price" disabled>
+                <span class="input-group-prepend">
+                    <input type="button"  class="form-control text-left btn-sucess m-1" value="Price" disabled>
                 </span>
                 {{-- quantity textbox --}}
-                <input type="button"  class="form-control text-center btn-success m-2" value="Quantity" disabled>
+                <input type="button"  class="form-control text-center btn-sucess m-1" value="Quantity" disabled>
                 {{-- subtotal textbox --}}
-                <input type="button"  class="form-control text-left btn-success m-2" value="Subtotal" disabled>
+                <input type="button"  class="form-control text-left btn-sucess m-1" value="Subtotal" disabled>
             </div>
-            <input type="number" id="manualInput"  class="form-control form-control-lg text-center m-2 num" value="0" >
+            <input type="number" id="manualInput"  class="form-control form-control-lg text-center m-1 num" value="0" >
             {{-- 2.50 --}}
             <div class="input-group">
                 
@@ -83,35 +85,35 @@
                 
                 <span class="input-group-prepend">
                 
-                    <button type="button" class="btn btn-outline-primary m-2">
+                    <button type="button" class="btn btn-outline-primary m-1">
                         <input type="checkbox" id="discount1" value="0">
                     </button>
                 </span>
                 {{-- quantity textbox --}}
-                <input type="number" name="qty[]" id="qty1"  class="form-control form-control-lg text-center m-2" value="0" >
+                <input type="number" name="qty[]" id="qty1"  class="form-control form-control-lg text-center m-1" value="0" >
                 {{-- subtotal textbox --}}
-                <input type="number" class="form-control form-control-lg text-right num m-2" id="subTotal1" value="0.00" name="subtotal[]" readonly>
+                <input type="number" class="form-control form-control-lg text-right m-1 num" id="subTotal1" value="0.00" name="subtotal[]" readonly>
                                 {{-- SRP --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-primary m-2">
+                    <button type="button" class="btn btn-outline-primary m-1">
                         2.50
                     </button>
                 </span>
                 {{-- trash button --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-secondary btn-lg delete m-2" id="trash1">
+                    <button type="button" class="btn btn-outline-secondary btn-lg delete m-1" id="trash1">
                         <span class="fa fa-trash text-danger"></span>
                     </button>
                 </span>
                 {{-- minus button --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-2" id="minus1">
+                    <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-1" id="minus1">
                         <span class="fa fa-minus"></span>
                     </button>
                 </span>
                 {{-- plus button --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-2" id="plus1">
+                    <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-1" id="plus1">
                         <span class="fa fa-plus"></span>
                     </button>
                 </span>
@@ -122,35 +124,35 @@
                 <div class="input-group">
                     {{-- discount checkbox --}}
                     <span class="input-group-prepend">
-                        <button type="button" class="btn btn-outline-primary m-2">
+                        <button type="button" class="btn btn-outline-primary m-1">
                             <input type="checkbox" id="discount2" value="0">
                         </button>
                     </span>
                     {{-- quantity textbox --}}
-                    <input type="number" name="qty[]" id="qty2"  class="form-control form-control-lg text-center m-2" value="0">
+                    <input type="number" name="qty[]" id="qty2"  class="form-control form-control-lg text-center m-1" value="0">
                     {{-- subtotal textbox --}}
-                    <input type="number" class="form-control form-control-lg text-right num" id="subTotal2" value="0.00" name="subtotal[]" readonly>
+                    <input type="number" class="form-control form-control-lg text-right m-1 num" id="subTotal2" value="0.00" name="subtotal[]" readonly>
                                         {{-- SRP --}}
                     <span class="input-group-prepend">
-                        <button type="button" class="btn btn-outline-primary m-2">
+                        <button type="button" class="btn btn-outline-primary m-1">
                            6.00
                         </button>
                     </span>
                     {{-- trash button --}}
                     <span class="input-group-prepend">
-                        <button type="button" class="btn btn-outline-secondary btn-lg delete m-2" id="trash2">
+                        <button type="button" class="btn btn-outline-secondary btn-lg delete m-1" id="trash2">
                             <span class="fa fa-trash text-danger"></span>
                         </button>
                     </span>
                     {{-- minus button --}}
                     <span class="input-group-prepend">
-                        <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-2" id="minus2">
+                        <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-1" id="minus2">
                             <span class="fa fa-minus"></span>
                         </button>
                     </span>
                     {{-- plus button --}}
                     <span class="input-group-prepend">
-                        <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-2" id="plus2">
+                        <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-1" id="plus2">
                             <span class="fa fa-plus"></span>
                         </button>
                     </span>
@@ -161,30 +163,30 @@
              <div class="input-group">
                 <div class="input-group">
                     {{-- quantity textbox --}}
-                    <input type="number" name="qty[]" id="qty3"  class="form-control form-control-lg text-center m-2" value="0">
+                    <input type="number" name="qty[]" id="qty3"  class="form-control form-control-lg text-center m-1" value="0">
                     {{-- subtotal textbox --}}
-                    <input type="number" class="form-control form-control-lg text-right num m-2" id="subTotal3" value="0.00" name="subtotal[]" readonly>
+                    <input type="number" class="form-control form-control-lg text-right m-1 num" id="subTotal3" value="0.00" name="subtotal[]" readonly>
                                         {{-- SRP --}}
                     <span class="input-group-prepend">
-                        <button type="button" class="btn btn-outline-primary m-2">
+                        <button type="button" class="btn btn-outline-primary m-1">
                            10.00
                         </button>
                     </span>
                     {{-- trash button --}}
                     <span class="input-group-prepend">
-                        <button type="button" class="btn btn-outline-secondary btn-lg delete m-2" id="trash3">
+                        <button type="button" class="btn btn-outline-secondary btn-lg delete m-1" id="trash3">
                             <span class="fa fa-trash text-danger"></span>
                         </button>
                     </span>
                     {{-- minus button --}}
                     <span class="input-group-prepend">
-                        <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-2" id="minus3">
+                        <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-1" id="minus3">
                             <span class="fa fa-minus"></span>
                         </button>
                     </span>
                     {{-- plus button --}}
                     <span class="input-group-prepend">
-                        <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-2" id="plus3">
+                        <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-1" id="plus3">
                             <span class="fa fa-plus"></span>
                         </button>
                     </span>
@@ -193,30 +195,30 @@
 
             <div class="input-group">
                 {{-- quantity textbox --}}
-                <input type="number" name="qty[]" id="qty4"  class="form-control form-control-lg text-center m-2" value="0" >
+                <input type="number" name="qty[]" id="qty4"  class="form-control form-control-lg text-center m-1" value="0" >
                 {{-- subtotal textbox --}}
-                <input type="number" class="form-control form-control-lg text-right num m-2" id="subTotal4" value="0.00" name="subtotal[]" readonly>
+                <input type="number" class="form-control form-control-lg text-right m-1 num" id="subTotal4" value="0.00" name="subtotal[]" readonly>
                                 {{-- SRP --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-primary m-2">
+                    <button type="button" class="btn btn-outline-primary m-1">
                         20.00
                     </button>
                 </span>
                 {{-- trash button --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-secondary btn-lg delete m-2" id="trash4">
+                    <button type="button" class="btn btn-outline-secondary btn-lg delete m-1" id="trash4">
                         <span class="fa fa-trash text-danger"></span>
                     </button>
                 </span>
                 {{-- minus button --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-2" id="minus4">
+                    <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-1" id="minus4">
                         <span class="fa fa-minus"></span>
                     </button>
                 </span>
                 {{-- plus button --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-2" id="plus4">
+                    <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-1" id="plus4">
                         <span class="fa fa-plus"></span>
                     </button>
                 </span>
@@ -224,30 +226,30 @@
 
             <div class="input-group">
                 {{-- quantity textbox --}}
-                <input type="number" name="qty[]" id="qty5"  class="form-control form-control-lg text-center m-2" value="0" >
+                <input type="number" name="qty[]" id="qty5"  class="form-control form-control-lg text-center m-1" value="0" >
                 {{-- subtotal textbox --}}
-                <input type="number" class="form-control form-control-lg text-right num m-2" id="subTotal5" value="0.00" name="subtotal[]" readonly>
+                <input type="number" class="form-control form-control-lg text-right m-1 num" id="subTotal5" value="0.00" name="subtotal[]" readonly>
                                 {{-- SRP --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-primary m-2">
+                    <button type="button" class="btn btn-outline-primary m-1">
                         22.00
                     </button>
                 </span>
                 {{-- trash button --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-secondary btn-lg delete m-2" id="trash5">
+                    <button type="button" class="btn btn-outline-secondary btn-lg delete m-1" id="trash5">
                         <span class="fa fa-trash text-danger"></span>
                     </button>
                 </span>
                 {{-- minus button --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-2" id="minus5">
+                    <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-1" id="minus5">
                         <span class="fa fa-minus"></span>
                     </button>
                 </span>
                 {{-- plus button --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-2" id="plus5">
+                    <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-1" id="plus5">
                         <span class="fa fa-plus"></span>
                     </button>
                 </span>
@@ -255,30 +257,30 @@
 
             <div class="input-group">
                 {{-- quantity textbox --}}
-                <input type="number" name="qty[]" id="qty6"  class="form-control form-control-lg text-center m-2" value="0" >
+                <input type="number" name="qty[]" id="qty6"  class="form-control form-control-lg text-center m-1" value="0" >
                 {{-- subtotal textbox --}}
-                <input type="number" class="form-control form-control-lg text-right num m-2" id="subTotal6" value="0.00" name="subtotal[]" readonly>
+                <input type="number" class="form-control form-control-lg text-right m-1 num" id="subTotal6" value="0.00" name="subtotal[]" readonly>
                                 {{-- SRP --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-primary m-2">
+                    <button type="button" class="btn btn-outline-primary m-1">
                        24.00
                     </button>
                 </span>
                 {{-- trash button --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-secondary btn-lg delete m-2" id="trash6">
+                    <button type="button" class="btn btn-outline-secondary btn-lg delete m-1" id="trash6">
                         <span class="fa fa-trash text-danger"></span>
                     </button>
                 </span>
                 {{-- minus button --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-2" id="minus6">
+                    <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-1" id="minus6">
                         <span class="fa fa-minus"></span>
                     </button>
                 </span>
                 {{-- plus button --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-2" id="plus6">
+                    <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-1" id="plus6">
                         <span class="fa fa-plus"></span>
                     </button>
                 </span>
@@ -286,30 +288,30 @@
 
             <div class="input-group">
                 {{-- quantity textbox --}}
-                <input type="number" name="qty[]" id="qty7"  class="form-control form-control-lg text-center m-2" value="0" >
+                <input type="number" name="qty[]" id="qty7"  class="form-control form-control-lg text-center m-1" value="0" >
                 {{-- subtotal textbox --}}
-                <input type="number" class="form-control form-control-lg text-right num m-2" id="subTotal7" value="0.00" name="subtotal[]" readonly>
+                <input type="number" class="form-control form-control-lg text-right m-1 num" id="subTotal7" value="0.00" name="subtotal[]" readonly>
                                 {{-- SRP --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-primary m-2">
+                    <button type="button" class="btn btn-outline-primary m-1">
                        40.00
                     </button>
                 </span>
                 {{-- trash button --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-secondary btn-lg delete m-2" id="trash7">
+                    <button type="button" class="btn btn-outline-secondary btn-lg delete m-1" id="trash7">
                         <span class="fa fa-trash text-danger"></span>
                     </button>
                 </span>
                 {{-- minus button --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-2" id="minus7">
+                    <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-1" id="minus7">
                         <span class="fa fa-minus"></span>
                     </button>
                 </span>
                 {{-- plus button --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-2" id="plus7">
+                    <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-1" id="plus7">
                         <span class="fa fa-plus"></span>
                     </button>
                 </span>
@@ -317,30 +319,30 @@
 
             <div class="input-group">
                 {{-- quantity textbox --}}
-                <input type="number" name="qty[]" id="qty8"  class="form-control form-control-lg text-center m-2" value="0" >
+                <input type="number" name="qty[]" id="qty8"  class="form-control form-control-lg text-center m-1" value="0" >
                 {{-- subtotal textbox --}}
-                <input type="number" class="form-control form-control-lg text-right num m-2" id="subTotal8" value="0.00" name="subtotal[]" readonly>
+                <input type="number" class="form-control form-control-lg text-right m-1 num" id="subTotal8" value="0.00" name="subtotal[]" readonly>
                                 {{-- SRP --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-primary m-2">
+                    <button type="button" class="btn btn-outline-primary m-1">
                         45.00
                     </button>
                 </span>
                 {{-- trash button --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-secondary btn-lg delete m-2" id="trash8">
+                    <button type="button" class="btn btn-outline-secondary btn-lg delete m-1" id="trash8">
                         <span class="fa fa-trash text-danger"></span>
                     </button>
                 </span>
                 {{-- minus button --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-2" id="minus8">
+                    <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-1" id="minus8">
                         <span class="fa fa-minus"></span>
                     </button>
                 </span>
                 {{-- plus button --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-2" id="plus8">
+                    <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-1" id="plus8">
                         <span class="fa fa-plus"></span>
                     </button>
                 </span>
@@ -348,30 +350,30 @@
 
             <div class="input-group">
                 {{-- quantity textbox --}}
-                <input type="number" name="qty[]" id="qty9"  class="form-control form-control-lg text-center m-2" value="0" >
+                <input type="number" name="qty[]" id="qty9"  class="form-control form-control-lg text-center m-1" value="0" >
                 {{-- subtotal textbox --}}
-                <input type="number" class="form-control form-control-lg text-right num m-2" id="subTotal9" value="0.00" name="subtotal[]" readonly>
+                <input type="number" class="form-control form-control-lg text-right m-1 num" id="subTotal9" value="0.00" name="subtotal[]" readonly>
                                 {{-- SRP --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-primary m-2">
+                    <button type="button" class="btn btn-outline-primary m-1">
                         55.00
                     </button>
                 </span>
                 {{-- trash button --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-secondary btn-lg delete m-2" id="trash9">
+                    <button type="button" class="btn btn-outline-secondary btn-lg delete m-1" id="trash9">
                         <span class="fa fa-trash text-danger"></span>
                     </button>
                 </span>
                 {{-- minus button --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-2" id="minus9">
+                    <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-1" id="minus9">
                         <span class="fa fa-minus"></span>
                     </button>
                 </span>
                 {{-- plus button --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-2" id="plus9">
+                    <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-1" id="plus9">
                         <span class="fa fa-plus"></span>
                     </button>
                 </span>
