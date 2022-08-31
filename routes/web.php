@@ -38,6 +38,8 @@ Route::get('/about', function () {
 
 Route::get('/home', [HomeController::class, 'index'])->name('user.home')->middleware('is_user');
 Route::post('/home', [HomeController::class, 'saveTransaction'])->name('saveTransaction')->middleware('is_user');
+Route::get('/home/v2', [HomeController::class, 'index2'])->name('user.home2')->middleware('is_user');
+Route::post('/home/v2', [HomeController::class, 'saveTransaction2'])->name('saveTransaction2')->middleware('is_user');
 
 Route::group(['prefix' => 'admin', 'middleware' => ['is_admin']], function(){
 

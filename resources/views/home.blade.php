@@ -66,16 +66,16 @@
             <div class="input-group">
                 {{-- discount title --}}
                 <span class="input-group-prepend">
-                    <input type="button"  class="form-control text-left btn-sucess m-1" value="%" disabled>
+                    <input type="button"  class="form-control text-left btn-success m-1" value="%" disabled>
                 </span>
                 {{-- SRP --}}
                 <span class="input-group-prepend">
-                    <input type="button"  class="form-control text-left btn-sucess m-1" value="Price" disabled>
+                    <input type="button"  class="form-control text-left btn-success m-1" value="Price" disabled>
                 </span>
                 {{-- quantity textbox --}}
-                <input type="button"  class="form-control text-center btn-sucess m-1" value="Quantity" disabled>
+                <input type="button"  class="form-control text-center btn-success m-1" value="Quantity" disabled>
                 {{-- subtotal textbox --}}
-                <input type="button"  class="form-control text-left btn-sucess m-1" value="Subtotal" disabled>
+                <input type="button"  class="form-control text-left btn-success m-1" value="Subtotal" disabled>
             </div>
             <input type="number" id="manualInput"  class="form-control form-control-lg text-center m-1 num" value="0" >
             {{-- 2.50 --}}
