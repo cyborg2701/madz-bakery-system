@@ -31,11 +31,11 @@
             <div class="input-group">
                 {{-- discount title --}}
                 <span class="input-group-prepend">
-                    <input type="text"  class="form-control-lg text-left btn btn-success m-1" value="INPUT AMOUNT">
+                    <input type="text"  class="form-control-lg text-center btn btn-success m-1" value="INPUT AMOUNT">
                 </span>
                 {{-- SRP --}}
 
-                    <input type="number" id="manualInput"  class="form-control form-control-lg text-right num m-1" value="0">
+                    <input type="number" id="manualInput"  class="form-control-lg text-right num m-1" value="0">
 
             </div>
 

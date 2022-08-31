@@ -62,14 +62,11 @@
             <div class="input-group">
                 {{-- discount title --}}
                 <span class="input-group-prepend">
-                    <input type="button"  class="form-control text-left btn-success m-1" value="Price" disabled>
+                    <input type="text"  class="form-control form-control-lg text-center btn-success m-1" value="INPUT AMOUNT" disabled>
                 </span>
-                {{-- quantity textbox --}}
-                <input type="button"  class="form-control text-center btn-success m-1" value="Quantity" disabled>
-                {{-- subtotal textbox --}}
-                <input type="button"  class="form-control text-left btn-success m-1" value="Subtotal" disabled>
+                <input type="number" id="manualInput"  class="form-control form-control-lg text-right m-1 num" value="0" >
             </div>
-            <input type="number" id="manualInput"  class="form-control form-control-lg text-center m-1 num" value="0" >
+
             {{-- 2.50 --}}
             <div class="input-group">
                 {{-- quantity textbox --}}
@@ -78,7 +75,7 @@
                 <input type="number" class="form-control form-control-lg text-right num" id="subTotal1" value="0.00" name="subtotal[]" readonly>
                                 {{-- SRP --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-primary">
+                    <button type="button" class="btn btn-outline-primary m-1">
                         2.50
                     </button>
                 </span>
@@ -111,7 +108,7 @@
                     <input type="number" class="form-control form-control-lg text-right num" id="subTotal2" value="0.00" name="subtotal[]" readonly>
                                         {{-- SRP --}}
                     <span class="input-group-prepend">
-                        <button type="button" class="btn btn-outline-primary">
+                        <button type="button" class="btn btn-outline-primary m-1">
                            6.00
                         </button>
                     </span>
@@ -145,7 +142,7 @@
                     <input type="number" class="form-control form-control-lg text-right num" id="subTotal3" value="0.00" name="subtotal[]" readonly>
                                         {{-- SRP --}}
                     <span class="input-group-prepend">
-                        <button type="button" class="btn btn-outline-primary">
+                        <button type="button" class="btn btn-outline-primary m-1">
                            10
                         </button>
                     </span>
@@ -177,7 +174,7 @@
                 <input type="number" class="form-control form-control-lg text-right num" id="subTotal4" value="0.00" name="subtotal[]" readonly>
                                 {{-- SRP --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-primary">
+                    <button type="button" class="btn btn-outline-primary m-1">
                         20
                     </button>
                 </span>
@@ -208,7 +205,7 @@
                 <input type="number" class="form-control form-control-lg text-right num" id="subTotal5" value="0.00" name="subtotal[]" readonly>
                                 {{-- SRP --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-primary">
+                    <button type="button" class="btn btn-outline-primary m-1">
                         22
                     </button>
                 </span>
@@ -239,7 +236,7 @@
                 <input type="number" class="form-control form-control-lg text-right num" id="subTotal6" value="0.00" name="subtotal[]" readonly>
                                 {{-- SRP --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-primary">
+                    <button type="button" class="btn btn-outline-primary m-1">
                        24
                     </button>
                 </span>
@@ -270,7 +267,7 @@
                 <input type="number" class="form-control form-control-lg text-right num" id="subTotal7" value="0.00" name="subtotal[]" readonly>
                                 {{-- SRP --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-primary">
+                    <button type="button" class="btn btn-outline-primary m-1">
                        40
                     </button>
                 </span>
@@ -301,7 +298,7 @@
                 <input type="number" class="form-control form-control-lg text-right num" id="subTotal8" value="0.00" name="subtotal[]" readonly>
                                 {{-- SRP --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-primary">
+                    <button type="button" class="btn btn-outline-primary m-1">
                         45
                     </button>
                 </span>
@@ -332,7 +329,7 @@
                 <input type="number" class="form-control form-control-lg text-right num" id="subTotal9" value="0.00" name="subtotal[]" readonly>
                                 {{-- SRP --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-primary">
+                    <button type="button" class="btn btn-outline-primary m-1">
                         55
                     </button>
                 </span>
@@ -363,7 +360,7 @@
                 <input type="number" class="form-control form-control-lg text-right num" id="subTotal10" value="0.00" name="subtotal[]" readonly>
                                 {{-- SRP --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-primary">
+                    <button type="button" class="btn btn-outline-primary m-1">
                         100
                     </button>
                 </span>
