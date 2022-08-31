@@ -3,7 +3,7 @@
 @section('content')
 <form action="" id="transactionForm" name="transactionForm" enctype="multipart/form-data">
 <div class="d-flex justify-content-center mb-2">
-    <div class="col-md-5">
+    <div class="col-md-6">
         <div class="input-group">
             <span class="input-group-prepend">
                 <button type="button" class="btn btn-info" id="btnTotal">
@@ -36,6 +36,7 @@
     <input type="hidden" name="price[]" value="40" id="price7">
     <input type="hidden" name="price[]" value="45" id="price8">
     <input type="hidden" name="price[]" value="55" id="price9">
+    <input type="hidden" name="price[]" value="55" id="price10">
     {{-- <input type="hidden" name="price[]" value="{{App\Models\Product::getProdPrice(4)}}" id="price10">
     <input type="hidden" name="price[]" value="{{App\Models\Product::getProdPrice(16)}}" id="price11">
     <input type="hidden" name="price[]" value="{{App\Models\Product::getProdPrice(14)}}" id="price12">
@@ -59,16 +60,9 @@
 
     <div class="d-flex justify-content-center">
         {{-- ASSORTED BREAD CATEGORY --}}
-        <div class="col-md-5">
-            {{-- TITLE --}}
-            <span class="badge bg-primary text-white">ASSORTED BREAD</span>
-            
+        <div class="col-md-6">
             <div class="input-group">
                 {{-- discount title --}}
-                <span class="input-group-prepend">
-                    <input type="button"  class="form-control text-left btn-success m-1" value="%" disabled>
-                </span>
-                {{-- SRP --}}
                 <span class="input-group-prepend">
                     <input type="button"  class="form-control text-left btn-success m-1" value="Price" disabled>
                 </span>
@@ -80,15 +74,6 @@
             <input type="number" id="manualInput"  class="form-control form-control-lg text-center m-1 num" value="0" >
             {{-- 2.50 --}}
             <div class="input-group">
-                
-                {{-- discount checkbox --}}
-                
-                <span class="input-group-prepend">
-                
-                    <button type="button" class="btn btn-outline-primary m-1">
-                        <input type="checkbox" id="discount1" value="0">
-                    </button>
-                </span>
                 {{-- quantity textbox --}}
                 <input type="number" name="qty[]" id="qty1"  class="form-control form-control-lg text-center m-1" value="0" >
                 {{-- subtotal textbox --}}
@@ -122,12 +107,6 @@
             {{-- 6.00 --}}
             <div class="input-group">
                 <div class="input-group">
-                    {{-- discount checkbox --}}
-                    <span class="input-group-prepend">
-                        <button type="button" class="btn btn-outline-primary m-1">
-                            <input type="checkbox" id="discount2" value="0">
-                        </button>
-                    </span>
                     {{-- quantity textbox --}}
                     <input type="number" name="qty[]" id="qty2"  class="form-control form-control-lg text-center m-1" value="0">
                     {{-- subtotal textbox --}}
@@ -169,7 +148,7 @@
                                         {{-- SRP --}}
                     <span class="input-group-prepend">
                         <button type="button" class="btn btn-outline-primary m-1">
-                           10.00
+                           10
                         </button>
                     </span>
                     {{-- trash button --}}
@@ -201,7 +180,7 @@
                                 {{-- SRP --}}
                 <span class="input-group-prepend">
                     <button type="button" class="btn btn-outline-primary m-1">
-                        20.00
+                        20
                     </button>
                 </span>
                 {{-- trash button --}}
@@ -232,7 +211,7 @@
                                 {{-- SRP --}}
                 <span class="input-group-prepend">
                     <button type="button" class="btn btn-outline-primary m-1">
-                        22.00
+                        22
                     </button>
                 </span>
                 {{-- trash button --}}
@@ -263,7 +242,7 @@
                                 {{-- SRP --}}
                 <span class="input-group-prepend">
                     <button type="button" class="btn btn-outline-primary m-1">
-                       24.00
+                       24
                     </button>
                 </span>
                 {{-- trash button --}}
@@ -294,7 +273,7 @@
                                 {{-- SRP --}}
                 <span class="input-group-prepend">
                     <button type="button" class="btn btn-outline-primary m-1">
-                       40.00
+                       40
                     </button>
                 </span>
                 {{-- trash button --}}
@@ -325,7 +304,7 @@
                                 {{-- SRP --}}
                 <span class="input-group-prepend">
                     <button type="button" class="btn btn-outline-primary m-1">
-                        45.00
+                        45
                     </button>
                 </span>
                 {{-- trash button --}}
@@ -356,7 +335,7 @@
                                 {{-- SRP --}}
                 <span class="input-group-prepend">
                     <button type="button" class="btn btn-outline-primary m-1">
-                        55.00
+                        55
                     </button>
                 </span>
                 {{-- trash button --}}
@@ -374,6 +353,37 @@
                 {{-- plus button --}}
                 <span class="input-group-prepend">
                     <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-1" id="plus9">
+                        <span class="fa fa-plus"></span>
+                    </button>
+                </span>
+            </div>
+
+            <div class="input-group">
+                {{-- quantity textbox --}}
+                <input type="number" name="qty[]" id="qty10"  class="form-control form-control-lg text-center m-1" value="0" >
+                {{-- subtotal textbox --}}
+                <input type="number" class="form-control form-control-lg text-right m-1 num" id="subTotal10" value="0.00" name="subtotal[]" readonly>
+                                {{-- SRP --}}
+                <span class="input-group-prepend">
+                    <button type="button" class="btn btn-outline-primary m-1">
+                        100
+                    </button>
+                </span>
+                {{-- trash button --}}
+                <span class="input-group-prepend">
+                    <button type="button" class="btn btn-outline-secondary btn-lg delete m-1" id="trash10">
+                        <span class="fa fa-trash text-danger"></span>
+                    </button>
+                </span>
+                {{-- minus button --}}
+                <span class="input-group-prepend">
+                    <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-1" id="minus10">
+                        <span class="fa fa-minus"></span>
+                    </button>
+                </span>
+                {{-- plus button --}}
+                <span class="input-group-prepend">
+                    <button type="button" class="btn btn-outline-secondary btn-lg btn-number m-1" id="plus10">
                         <span class="fa fa-plus"></span>
                     </button>
                 </span>

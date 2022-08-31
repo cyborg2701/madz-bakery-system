@@ -64,7 +64,7 @@ $(document).ready(function(){
     let $qty7 = $('#qty7').val(0);
     let $qty8 = $('#qty8').val(0);
     let $qty9 = $('#qty9').val(0);
-    // let $qty10 = $('#qty10').val(0);
+    let $qty10 = $('#qty10').val(0);
     // let $qty11 = $('#qty11').val(0);
     // let $qty12 = $('#qty12').val(0);
     // let $qty13 = $('#qty13').val(0);
@@ -93,7 +93,7 @@ $(document).ready(function(){
     let $subTotal7 = $('#subTotal7').val(0);
     let $subTotal8 = $('#subTotal8').val(0);
     let $subTotal9 = $('#subTotal9').val(0);
-    // let $subTotal10 = $('#subTotal10').val(0);
+    let $subTotal10 = $('#subTotal10').val(0);
     // let $subTotal11 = $('#subTotal11').val(0);
     // let $subTotal12 = $('#subTotal12').val(0);
     // let $subTotal13 = $('#subTotal13').val(0);
@@ -115,33 +115,8 @@ $(document).ready(function(){
     // button functins
     var buttonsAndFunctions = [ 
         // plus buttons
-        { button : "plus1", 
-            fn : function(evt){ 
-                $qty1.val(parseInt($qty1.val())+1);
-                // apply discount
-               if($('#discount1').is(':checked') === true){
-                    console.log('discount is checked');
-                    $subTotal1.val(parseFloat($qty1.val()*2).toFixed(2));
-                } else{
-                    $subTotal1.val(parseFloat($qty1.val()* $('#price1').val()).toFixed(2));
-                }
-            } 
-                
-        },
-
-        { button : "plus2", 
-            fn : function(evt){ 
-                $qty2.val(parseInt($qty2.val())+1);
-                // apply discount
-                if($('#discount2').is(':checked') === true){
-                    console.log('discount is checked');
-                    $subTotal2.val(parseFloat($qty2.val()*5).toFixed(2));
-                } else{
-                    $subTotal2.val(parseFloat($qty2.val()* $('#price2').val()).toFixed(2));
-                }
-            } 
-        },
-
+        { button : "plus1", fn : function(evt){ $qty1.val(parseInt($qty1.val())+1);$subTotal1.val(parseFloat($qty1.val()* $('#price1').val()).toFixed(2)); }},
+        { button : "plus2", fn : function(evt){ $qty2.val(parseInt($qty2.val())+1);$subTotal2.val(parseFloat($qty2.val()* $('#price2').val()).toFixed(2)); }},
         { button : "plus3", fn : function(evt){ $qty3.val(parseInt($qty3.val())+1); $subTotal3.val(parseFloat($qty3.val()*$('#price3').val()).toFixed(2)); }},
         { button : "plus4", fn : function(evt){ $qty4.val(parseInt($qty4.val())+1); $subTotal4.val(parseFloat($qty4.val()*$('#price4').val()).toFixed(2)); }},
         { button : "plus5", fn : function(evt){ $qty5.val(parseInt($qty5.val())+1);$subTotal5.val(parseFloat($qty5.val()*$('#price5').val()).toFixed(2)); }},
@@ -149,7 +124,7 @@ $(document).ready(function(){
         { button : "plus7", fn : function(evt){ $qty7.val(parseInt($qty7.val())+1); $subTotal7.val(parseFloat($qty7.val()*$('#price7').val()).toFixed(2)); }},
         { button : "plus8", fn : function(evt){ $qty8.val(parseInt($qty8.val())+1);$subTotal8.val(parseFloat($qty8.val()*$('#price8').val()).toFixed(2)); }},
         { button : "plus9", fn : function(evt){ $qty9.val(parseInt($qty9.val())+1);$subTotal9.val(parseFloat($qty9.val()*$('#price9').val()).toFixed(2)); }},
-        // { button : "plus10", fn : function(evt){ $qty10.val(parseInt($qty10.val())+1);$subTotal10.val(parseFloat($qty10.val()*$('#price10').val()).toFixed(2)); }},
+        { button : "plus10", fn : function(evt){ $qty10.val(parseInt($qty10.val())+1);$subTotal10.val(parseFloat($qty10.val()*$('#price10').val()).toFixed(2)); }},
         // { button : "plus11", fn : function(evt){ $qty11.val(parseInt($qty11.val())+1);$subTotal11.val(parseFloat($qty11.val()*$('#price11').val()).toFixed(2)); }},
         // { button : "plus12", fn : function(evt){ $qty12.val(parseInt($qty12.val())+1);$subTotal12.val(parseFloat($qty12.val()*$('#price12').val()).toFixed(2)); }},
         // { button : "plus13", fn : function(evt){ $qty13.val(parseInt($qty13.val())+1);$subTotal13.val(parseFloat($qty13.val()*$('#price13').val()).toFixed(2)); }},
@@ -170,32 +145,8 @@ $(document).ready(function(){
 
 
         // minus buttons
-        { button : "minus1", 
-        fn : function(evt){ 
-                $qty1.val(parseInt($qty1.val())-1);
-                // apply discount
-                if($('#discount1').is(':checked') === true){
-                    console.log('discount is checked');
-                    $subTotal1.val(parseFloat($subTotal1.val()-2).toFixed(2));
-                } else{
-                    $subTotal1.val(parseFloat($subTotal1.val()- $('#price1').val()).toFixed(2));
-                }
-            } 
-        },
-
-        { button : "minus2", 
-        fn : function(evt){ 
-                $qty2.val(parseInt($qty2.val())-1);
-                   // apply discount
-                   if($('#discount2').is(':checked') === true){
-                    console.log('discount is checked');
-                    $subTotal2.val(parseFloat($subTotal2.val()-5).toFixed(2));
-                } else{
-                    $subTotal2.val(parseFloat($subTotal2.val()- $('#price2').val()).toFixed(2));
-                }
-            } 
-        },
-
+        { button : "minus1", fn : function(evt){ $qty1.val(parseInt($qty1.val())-1); $subTotal1.val(parseFloat($subTotal1.val()- $('#price1').val()).toFixed(2)); }},
+        { button : "minus2", fn : function(evt){ $qty2.val(parseInt($qty2.val())-1); $subTotal2.val(parseFloat($subTotal2.val()- $('#price2').val()).toFixed(2)); }},
         { button : "minus3", fn : function(evt){ $qty3.val(parseInt($qty3.val())-1);$subTotal3.val(parseFloat($subTotal3.val()-$('#price3').val()).toFixed(2)); }},
         { button : "minus4", fn : function(evt){ $qty4.val(parseInt($qty4.val())-1);$subTotal4.val(parseFloat($subTotal4.val()-$('#price4').val()).toFixed(2)); }},
         { button : "minus5", fn : function(evt){ $qty5.val(parseInt($qty5.val())-1);$subTotal5.val(parseFloat($subTotal5.val()-$('#price5').val()).toFixed(2)); }},
@@ -203,7 +154,7 @@ $(document).ready(function(){
         { button : "minus7", fn : function(evt){ $qty7.val(parseInt($qty7.val())-1);$subTotal7.val(parseFloat($subTotal7.val()-$('#price7').val()).toFixed(2)); }},
         { button : "minus8", fn : function(evt){ $qty8.val(parseInt($qty8.val())-1);$subTotal8.val(parseFloat($subTotal8.val()-$('#price8').val()).toFixed(2)); }},
         { button : "minus9", fn : function(evt){ $qty9.val(parseInt($qty9.val())-1);$subTotal9.val(parseFloat($subTotal9.val()-$('#price9').val()).toFixed(2)); }},
-        // { button : "minus10", fn : function(evt){ $qty10.val(parseInt($qty10.val())-1);$subTotal10.val(parseFloat($subTotal10.val()-$('#price10').val()).toFixed(2)); }},
+        { button : "minus10", fn : function(evt){ $qty10.val(parseInt($qty10.val())-1);$subTotal10.val(parseFloat($subTotal10.val()-$('#price10').val()).toFixed(2)); }},
         // { button : "minus11", fn : function(evt){ $qty11.val(parseInt($qty11.val())-1);$subTotal11.val(parseFloat($subTotal11.val()-$('#price11').val()).toFixed(2)); }},
         // { button : "minus12", fn : function(evt){ $qty12.val(parseInt($qty12.val())-1);$subTotal12.val(parseFloat($subTotal12.val()-$('#price12').val()).toFixed(2)); }},
         // { button : "minus13", fn : function(evt){ $qty13.val(parseInt($qty13.val())-1);$subTotal13.val(parseFloat($subTotal13.val()-$('#price13').val()).toFixed(2)); }},
@@ -232,7 +183,7 @@ $(document).ready(function(){
         { button : "trash7", fn : function(evt){ $qty7.val(0);$subTotal7.val(0); }},
         { button : "trash8", fn : function(evt){ $qty8.val(0);$subTotal8.val(0); }},
         { button : "trash9", fn : function(evt){ $qty9.val(0);$subTotal9.val(0); }},
-        // { button : "trash10", fn : function(evt){ $qty10.val(0);$subTotal10.val(0); }},
+        { button : "trash10", fn : function(evt){ $qty10.val(0);$subTotal10.val(0); }},
         // { button : "trash11", fn : function(evt){ $qty11.val(0);$subTotal11.val(0); }},
         // { button : "trash12", fn : function(evt){ $qty12.val(0);$subTotal12.val(0); }},
         // { button : "trash13", fn : function(evt){ $qty13.val(0);$subTotal13.val(0); }},
