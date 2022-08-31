@@ -73,12 +73,12 @@
             {{-- 2.50 --}}
             <div class="input-group">
                 {{-- quantity textbox --}}
-                <input type="number" name="qty[]" id="qty1"  class="form-control form-control-lg text-center m-1" value="0" >
+                <input type="number" name="qty[]" id="qty1"  class="form-control form-control-lg text-center" value="0" >
                 {{-- subtotal textbox --}}
-                <input type="number" class="form-control form-control-lg text-right m-1 num" id="subTotal1" value="0.00" name="subtotal[]" readonly>
+                <input type="number" class="form-control form-control-lg text-right num" id="subTotal1" value="0.00" name="subtotal[]" readonly>
                                 {{-- SRP --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-primary m-1">
+                    <button type="button" class="btn btn-outline-primary">
                         2.50
                     </button>
                 </span>
@@ -106,12 +106,12 @@
             <div class="input-group">
                 <div class="input-group">
                     {{-- quantity textbox --}}
-                    <input type="number" name="qty[]" id="qty2"  class="form-control form-control-lg text-center m-1" value="0">
+                    <input type="number" name="qty[]" id="qty2"  class="form-control form-control-lg text-center" value="0">
                     {{-- subtotal textbox --}}
-                    <input type="number" class="form-control form-control-lg text-right m-1 num" id="subTotal2" value="0.00" name="subtotal[]" readonly>
+                    <input type="number" class="form-control form-control-lg text-right num" id="subTotal2" value="0.00" name="subtotal[]" readonly>
                                         {{-- SRP --}}
                     <span class="input-group-prepend">
-                        <button type="button" class="btn btn-outline-primary m-1">
+                        <button type="button" class="btn btn-outline-primary">
                            6.00
                         </button>
                     </span>
@@ -140,12 +140,12 @@
              <div class="input-group">
                 <div class="input-group">
                     {{-- quantity textbox --}}
-                    <input type="number" name="qty[]" id="qty3"  class="form-control form-control-lg text-center m-1" value="0">
+                    <input type="number" name="qty[]" id="qty3"  class="form-control form-control-lg text-center" value="0">
                     {{-- subtotal textbox --}}
-                    <input type="number" class="form-control form-control-lg text-right m-1 num" id="subTotal3" value="0.00" name="subtotal[]" readonly>
+                    <input type="number" class="form-control form-control-lg text-right num" id="subTotal3" value="0.00" name="subtotal[]" readonly>
                                         {{-- SRP --}}
                     <span class="input-group-prepend">
-                        <button type="button" class="btn btn-outline-primary m-1">
+                        <button type="button" class="btn btn-outline-primary">
                            10
                         </button>
                     </span>
@@ -172,12 +172,12 @@
 
             <div class="input-group">
                 {{-- quantity textbox --}}
-                <input type="number" name="qty[]" id="qty4"  class="form-control form-control-lg text-center m-1" value="0" >
+                <input type="number" name="qty[]" id="qty4"  class="form-control form-control-lg text-center" value="0" >
                 {{-- subtotal textbox --}}
-                <input type="number" class="form-control form-control-lg text-right m-1 num" id="subTotal4" value="0.00" name="subtotal[]" readonly>
+                <input type="number" class="form-control form-control-lg text-right num" id="subTotal4" value="0.00" name="subtotal[]" readonly>
                                 {{-- SRP --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-primary m-1">
+                    <button type="button" class="btn btn-outline-primary">
                         20
                     </button>
                 </span>
@@ -203,12 +203,12 @@
 
             <div class="input-group">
                 {{-- quantity textbox --}}
-                <input type="number" name="qty[]" id="qty5"  class="form-control form-control-lg text-center m-1" value="0" >
+                <input type="number" name="qty[]" id="qty5"  class="form-control form-control-lg text-center" value="0" >
                 {{-- subtotal textbox --}}
-                <input type="number" class="form-control form-control-lg text-right m-1 num" id="subTotal5" value="0.00" name="subtotal[]" readonly>
+                <input type="number" class="form-control form-control-lg text-right num" id="subTotal5" value="0.00" name="subtotal[]" readonly>
                                 {{-- SRP --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-primary m-1">
+                    <button type="button" class="btn btn-outline-primary">
                         22
                     </button>
                 </span>
@@ -234,12 +234,12 @@
 
             <div class="input-group">
                 {{-- quantity textbox --}}
-                <input type="number" name="qty[]" id="qty6"  class="form-control form-control-lg text-center m-1" value="0" >
+                <input type="number" name="qty[]" id="qty6"  class="form-control form-control-lg text-center" value="0" >
                 {{-- subtotal textbox --}}
-                <input type="number" class="form-control form-control-lg text-right m-1 num" id="subTotal6" value="0.00" name="subtotal[]" readonly>
+                <input type="number" class="form-control form-control-lg text-right num" id="subTotal6" value="0.00" name="subtotal[]" readonly>
                                 {{-- SRP --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-primary m-1">
+                    <button type="button" class="btn btn-outline-primary">
                        24
                     </button>
                 </span>
@@ -265,12 +265,12 @@
 
             <div class="input-group">
                 {{-- quantity textbox --}}
-                <input type="number" name="qty[]" id="qty7"  class="form-control form-control-lg text-center m-1" value="0" >
+                <input type="number" name="qty[]" id="qty7"  class="form-control form-control-lg text-center" value="0" >
                 {{-- subtotal textbox --}}
-                <input type="number" class="form-control form-control-lg text-right m-1 num" id="subTotal7" value="0.00" name="subtotal[]" readonly>
+                <input type="number" class="form-control form-control-lg text-right num" id="subTotal7" value="0.00" name="subtotal[]" readonly>
                                 {{-- SRP --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-primary m-1">
+                    <button type="button" class="btn btn-outline-primary">
                        40
                     </button>
                 </span>
@@ -296,12 +296,12 @@
 
             <div class="input-group">
                 {{-- quantity textbox --}}
-                <input type="number" name="qty[]" id="qty8"  class="form-control form-control-lg text-center m-1" value="0" >
+                <input type="number" name="qty[]" id="qty8"  class="form-control form-control-lg text-center" value="0" >
                 {{-- subtotal textbox --}}
-                <input type="number" class="form-control form-control-lg text-right m-1 num" id="subTotal8" value="0.00" name="subtotal[]" readonly>
+                <input type="number" class="form-control form-control-lg text-right num" id="subTotal8" value="0.00" name="subtotal[]" readonly>
                                 {{-- SRP --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-primary m-1">
+                    <button type="button" class="btn btn-outline-primary">
                         45
                     </button>
                 </span>
@@ -327,12 +327,12 @@
 
             <div class="input-group">
                 {{-- quantity textbox --}}
-                <input type="number" name="qty[]" id="qty9"  class="form-control form-control-lg text-center m-1" value="0" >
+                <input type="number" name="qty[]" id="qty9"  class="form-control form-control-lg text-center" value="0" >
                 {{-- subtotal textbox --}}
-                <input type="number" class="form-control form-control-lg text-right m-1 num" id="subTotal9" value="0.00" name="subtotal[]" readonly>
+                <input type="number" class="form-control form-control-lg text-right num" id="subTotal9" value="0.00" name="subtotal[]" readonly>
                                 {{-- SRP --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-primary m-1">
+                    <button type="button" class="btn btn-outline-primary">
                         55
                     </button>
                 </span>
@@ -358,12 +358,12 @@
 
             <div class="input-group">
                 {{-- quantity textbox --}}
-                <input type="number" name="qty[]" id="qty10"  class="form-control form-control-lg text-center m-1" value="0" >
+                <input type="number" name="qty[]" id="qty10"  class="form-control form-control-lg text-center" value="0" >
                 {{-- subtotal textbox --}}
-                <input type="number" class="form-control form-control-lg text-right m-1 num" id="subTotal10" value="0.00" name="subtotal[]" readonly>
+                <input type="number" class="form-control form-control-lg text-right num" id="subTotal10" value="0.00" name="subtotal[]" readonly>
                                 {{-- SRP --}}
                 <span class="input-group-prepend">
-                    <button type="button" class="btn btn-outline-primary m-1">
+                    <button type="button" class="btn btn-outline-primary">
                         100
                     </button>
                 </span>
