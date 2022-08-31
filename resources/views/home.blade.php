@@ -3,7 +3,7 @@
 @section('content')
 <form action="" id="transactionForm" name="transactionForm" enctype="multipart/form-data">
 <div class="d-flex justify-content-center mb-2">
-    <div class="col-md-6">
+    <div class="col-lg-6">
         <div class="input-group">
             <span class="input-group-prepend">
                 <button type="button" class="btn btn-info" id="btnTotal">
@@ -58,7 +58,7 @@
 
     <div class="d-flex justify-content-center">
         {{-- ASSORTED BREAD CATEGORY --}}
-        <div class="col-md-6">
+        <div class="col-lg-6">
             <div class="input-group">
                 {{-- discount title --}}
                 <span class="input-group-prepend">
