@@ -18,13 +18,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Transaction::create([
-            'transactionId' => 22000000,
-            'price' => 0,
-            'qty' => 0,
-            'subTotal' => 0,
-            'created_at' => '2022-08-26'
-        ]);
         // Cashout::Create([
         //     'cashoutName' => 'lat',
         //     'amount' => 120,
@@ -35,14 +28,16 @@ class DatabaseSeeder extends Seeder
         //     'amount' => 120,
         //     'created_at' => '2022-08-25'
         // ]);
-        // Expense::create([
-        //     'expensesTotal' => 8960,
-        //     'created_at' => '2022-08-24'
-        // ]);
-        // Sale::create([
-        //     'total' => 4885,
-        //     'created_at' => '2022-08-25'
-        // ]);
+        // Expense::create(
+        //     [
+        //         'expensesTotal' => 1850,
+        //         'created' => '2022-08-30'
+        //     ]
+        // );
+        Sale::create([
+            'total' => 4850,
+            'created_at' => '2022-08-06'
+        ]);
         
     }
 }

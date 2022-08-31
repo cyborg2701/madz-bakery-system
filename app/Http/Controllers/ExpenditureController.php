@@ -57,7 +57,8 @@ class ExpenditureController extends Controller
         $date = Carbon::now()->toDateString();
 
         $request->validate([
-            'expenditureName' => 'required',
+            'expenditureType' => 'required',
+            'expenditureDescription' => 'required',
             'expenditureAmount' => 'required',
             'expenditureDate' => 'required',
         ]);
@@ -66,22 +67,24 @@ class ExpenditureController extends Controller
             'id' => $request->id    
         ],
         [
-            'expenditureName' => $request->expenditureName,
+            'expenditureType' => $request->expenditureType,
+            'expenditureDescription' => $request->expenditureDescription,
             'expenditureAmount' => $request->expenditureAmount,
+            'expenditureRemarks' => $request->expenditureRemarks,
             'created' =>  $request->expenditureDate,
 
         ]);
         
-        $getLastExpenditure = DB::table('expenditures')
-            ->whereDate('created', $request->expenditureDate)
-            ->sum('expenditureAmount');
+        // $getLastExpenditure = DB::table('expenditures')
+        //     ->whereDate('created', $request->expenditureDate)
+        //     ->sum('expenditureAmount');
         
-        Expense::updateOrCreate([
-            'created_at' => $request->expenditureDate],
-        [
-            'expensesTotal' => $getLastExpenditure,
-            'created' =>  $request->expenditureDate,
-        ]);
+        // Expense::updateOrCreate([
+        //     'created_at' => $request->expenditureDate],
+        // [
+        //     'expensesTotal' => $getLastExpenditure,
+        //     'created' =>  $request->expenditureDate,
+        // ]);
         return response()->json(['success'=>'Expenditure saved successfully.']);
     }
 
@@ -136,23 +139,23 @@ class ExpenditureController extends Controller
         return response()->json([
             'success'=>'Expenditure deleted successfully.'
         ]);
-        $expenditure = Expenditure::updateOrCreate([
-            'id' => $request->id    
-        ],
-        [
-            'expenditureName' => $request->expenditureName,
-            'expenditureAmount' => $request->expenditureAmount,
-        ]);
+        // $expenditure = Expenditure::updateOrCreate([
+        //     'id' => $request->id    
+        // ],
+        // [
+        //     'expenditureName' => $request->expenditureName,
+        //     'expenditureAmount' => $request->expenditureAmount,
+        // ]);
 
 
-        $getLastExpenditure = DB::table('expenditures')
-            ->whereDate('created_at', $date)
-            ->sum('expenditureAmount');
+        // $getLastExpenditure = DB::table('expenditures')
+        //     ->whereDate('created_at', $date)
+        //     ->sum('expenditureAmount');
         
-        Expense::updateOrCreate([
-            'created_at' => $date],
-        [
-            'expensesTotal' => $getLastExpenditure
-        ]);
+        // Expense::updateOrCreate([
+        //     'created_at' => $date],
+        // [
+        //     'expensesTotal' => $getLastExpenditure
+        // ]);
     }
 }

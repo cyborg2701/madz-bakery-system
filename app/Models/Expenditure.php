@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 class Expenditure extends Model
 {
-    public $timestamps = FALSE;
-    // protected $dateFormat = 'Y-m-d';
     use HasFactory;
     protected $fillable = [ 
-        'expenditureName', 
+        'expenditureType',
+        'expenditureDescription', 
         'expenditureAmount', 
+        'expenditureRemarks', 
         'created'
     ];
 }

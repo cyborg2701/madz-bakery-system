@@ -15,8 +15,11 @@ return new class extends Migration
     {
         Schema::create('cashouts', function (Blueprint $table) {
             $table->id();
-            $table->string('cashoutName');
-            $table->decimal('amount');
+            $table->string('expenseType');
+            $table->string('expenseName');
+            $table->decimal('expenseAmount', 12,2);
+            $table->string('expenseRemarks')->nullable();
+            $table->date('created');
             $table->timestamps();
         });
     }

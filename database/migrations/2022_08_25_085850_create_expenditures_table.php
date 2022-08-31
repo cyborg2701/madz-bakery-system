@@ -15,9 +15,11 @@ return new class extends Migration
     {
         Schema::create('expenditures', function (Blueprint $table) {
             $table->id();
-            $table->string('expenditureName');
-            $table->decimal('expenditureAmount', 60, 2);
-            $table->string('created');
+            $table->string('expenditureType');
+            $table->string('expenditureDescription');
+            $table->decimal('expenditureAmount', 40, 2);
+            $table->string('expenditureRemarks')->nullable();
+            $table->date('created');
             $table->timestamps();
         });
     }

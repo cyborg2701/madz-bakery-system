@@ -9,8 +9,10 @@ class Cashout extends Model
 {
     use HasFactory;
     protected $fillable = [ 
-        'cashoutName', 
-        'amount', 
-        'created_at',
+        'expenseType', 
+        'expenseName', 
+        'expenseAmount',
+        'expenseRemarks',
+        'created'
     ];
 }

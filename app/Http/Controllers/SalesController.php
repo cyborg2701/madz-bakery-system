@@ -5,10 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Cashout;
-use App\Models\Transaction;
 use App\Models\Expenditure;
 use App\Models\Sale;
-use App\Models\Cash;
 use DataTables;
 use Carbon\Carbon;
 
@@ -22,30 +20,22 @@ class SalesController extends Controller
      */
     public function index(Request $request)
     {   
-        // current date
         $sales = [];
         if($request->ajax()) {
            $sales = DB::table('sales as s')
-                        ->leftJoin('cashouts as c', 's.created_at', '=', 'c.created_at')
-                        ->leftJoin('expenses as e', 's.created_at', 'e.created')
-                        ->leftJoin('cashes as h', 's.created_at', 'h.created_at')
+                        ->leftJoin('cashouts as c', 's.created_at', 'c.created_at')
                         ->select(
-                            DB::raw('s.total as salesDaily'),
-                            DB::raw('sum(c.amount) as cashoutDaily'),
-                            's.created_at as created_at',
-                            DB::raw('e.expensesTotal as expenseTotal'),
-                            DB::raw('h.cashToday as cash'),
-                            DB::raw('(h.cashToday + s.total) - sum(c.amount) as incomeToday')
+                            DB::raw('s.total as dailySales'),
+                            DB::raw('sum(c.expenseAmount) as dailyExpenses'),
+                            DB::raw('DATE_FORMAT(s.created_at, \'%M %d, %Y\') as created_at'),
                         )
-
-                        ->groupBy('s.created_at')
+                        ->groupByRaw('day(s.created_at)')
+                        ->latest()
                         ->get();
-                        // dd($lastDayOfMonth);
             return DataTables::of($sales)
                 ->addIndexColumn()
                 ->make(true);
         }
-        
         return view('admin/sales', compact('sales'));
     }
 
@@ -114,4 +104,78 @@ class SalesController extends Controller
     {
         //
     }
+
+    public function transaction(Request $request)
+    {
+        $transactions = [];
+        if($request->ajax()) {
+           $transactions = DB::table('sales as s')
+                        ->select(
+                            DB::raw('DATE_FORMAT(s. created_at, \'%M %d, %Y\') as created_at'),
+                            'total'
+                        )
+                        ->latest()
+                        ->get();
+            return DataTables::of($transactions)
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view('admin/transactions', compact('transactions'));
+    }
+
+    //weekly sales
+    public function weeklySales(Request $request)
+    {
+        $weeklysales = [];
+        if($request->ajax()) {
+           $weeklysales = DB::table('sales as s')
+                            ->leftJoin('expenses as e', 's.created_at', 'e.created')
+                            ->select(
+                                DB::raw('DATE_FORMAT(s.created_at, \'%M %d, %Y\') as created_at'),
+                                DB::raw('sum(total) as dailySales'),
+                                DB::raw('sum(e.expensesTotal) as dailyExpenses')
+                                // DB::raw('e.expensesTotal as dailyExpenses')
+                                )
+                            // ->whereBetween('s.created_at', [Carbon::parse()->startOfWeek(), Carbon::parse()->endOfWeek()])
+                            ->groupByRaw('week(s.created_at)')
+                            ->orderBy('s.created_at', 'desc')
+                            ->get();
+
+            return DataTables::of($weeklysales)
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view('admin/weeklysales', compact('weeklysales'));
+
+     
+    }
+
+     //monthly sales
+     public function monthlySales(Request $request)
+     {
+        $monthlyexpenditures = DB::table('expenditures')
+                                ->whereMonth('created', Carbon::now()->format('n'))
+                                ->sum('expenditureAmount');
+                                
+        $monthlysales = [];
+        if($request->ajax()) {
+           $monthlysales = DB::table('sales as s')
+                            ->leftJoin('expenses as e', 's.created_at', 'e.created')
+                            ->leftJoin('expenditures as x', 's.created_at', 'x.created')
+                            ->select(
+                                DB::raw('DATE_FORMAT(s.created_at, \'%M\') as created_at'),
+                                DB::raw('sum(s.total) as monthlySales'),
+                                DB::raw('sum(e.expensesTotal) as monthlyExpenses'),
+                                DB::raw('sum(x.expenditureAmount) as monthlyExpenditures')
+                                )
+                            ->groupByRaw('month(s.created_at)')
+                            ->orderBy('s.created_at', 'desc')
+                            ->get();
+
+            return DataTables::of($monthlysales)
+                ->addIndexColumn()
+                ->make(true);
+        }
+        return view('admin/monthlysales', compact('monthlysales'));
+     }
 }

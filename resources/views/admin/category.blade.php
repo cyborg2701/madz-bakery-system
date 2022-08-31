@@ -1,10 +1,27 @@
 @extends('layouts.admin')
-
+<style>
+    #products, #prodIcon {
+        font-weight: 700;
+        color: white;
+        font-style: italic;
+    }
+</style>
 @section('main-content')
-    <h1 class="h3 mb-2 text-gray-800" hidden>{{ __('Category List') }}</h1>
-    <div class="text-right">
-    <!-- Button trigger modal -->
-        <a href="javascript:void(0)" class="btn btn-primary" btn-sm id="addProduct">Add Category</a>
+    <div class="row">
+        <div class="col-md-8">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                  <a class="nav-link" href="{{'products'}}">Product's List</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active">Category's List</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4 text-right">
+             <!-- Button trigger modal -->
+    <a href="javascript:void(0)" class="btn btn-primary" btn-sm id="addProduct">Add Category</a>
+        </div>
     </div>
     <div class="mt-2">
         <table class="table table-bordered data-table nowrap" style="width:100%">
@@ -67,6 +84,19 @@ $(document).ready(function(){
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+    toastr.options = {
+                "debug": false,
+                "newestOnTop": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": true,
+                "showDuration": "300",
+                "hideDuration": "500",
+                "timeOut": "3000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
     // load table
     var table = $('.data-table').DataTable({
         processing: true,
@@ -81,7 +111,7 @@ $(document).ready(function(){
             {data: 'action', name: 'action', orderable: false, searchable: false, class:'text-center'},
         ]
     });
-    // show add modal
+
     
     // SHOW ADD MODAL
     $('#addProduct').click(function () {

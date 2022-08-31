@@ -79,9 +79,13 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        // $where = [
+        //     'id' => $request->id
+        // ];
+        // $expenses  = Cashout::where($where)->first();
+        // return response()->json($expenses,);
     }
 
     /**
@@ -104,6 +108,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // $products = Product::where('id', $request->id)->delete();
+        // return response()->json([
+        //     'success'=>'Product deleted successfully.'
+        // ]);
     }
 }

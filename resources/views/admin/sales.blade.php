@@ -1,19 +1,40 @@
 @extends('layouts.admin')
-
+<style>
+    #sales, #salesIcon {
+        font-weight: 700;
+        color: white;
+        font-style: italic;
+    }
+</style>
 @section('main-content')
-    <h1 class="h3 mb-2 text-gray-800" hidden>{{ __('Cash Out') }}</h1>
+    <div class="row">
+        <div class="col-md-8">
+            <ul class="nav  nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active">Daily Sales</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('admin.sales.weekly')}}">Weekly Sales</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('admin.sales.monthly')}}">Monthly Sales</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4 text-right">
+            <!-- Button trigger modal -->
+    <a href="javascript:void(0)" class="btn btn-primary" btn-sm id="addProduct">Add Category</a>
+        </div>
+    </div>
     <div class="mt-2">
         <table class="table table-bordered data-table nowrap" style="width:100%">
             <thead>
                 <tr class="table-primary">
                 <td class="text-center">No.</td>
-                <td class="text-center">Cashout Total</td>
-                <td class="text-center">Expenses Total</td>
-                <td class="text-center">Daily Sales</td>
-                <td class="text-center">Cash Daily</td>
-                <td class="text-center">Net Daily</td>
-                {{-- <td class="text-center">Expenditure</td> --}}
                 <td class="text-center">Date</td>
+                <td class="text-center">Sales /Revenue</td>
+                <td class="text-center">Expenses</td>
+                <td class="text-center">Net Profit</td>
                 </tr>
             </thead>
             <tbody>
@@ -69,83 +90,41 @@ $(document).ready(function(){
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-
         // load table
         var table = $('.data-table').DataTable({
         processing: true,
         serverSide: true,
-        responsive: true,
         select: true,
         ajax: "{{ url('admin/sales') }}",
+        responsive: {
+            details: {
+                type: 'column'
+            }
+        },
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-            {data: 'cashoutDaily', name: 'cashoutDaily', class:'text-left', render: $.fn.dataTable.render.number(',', '.', 2, '')},  
-            {data: 'expenseTotal', name: 'expenseTotal', class:'text-left', render: $.fn.dataTable.render.number(',', '.', 2, '')},  
-            {data: 'salesDaily', name: 'salesDaily', class:'text-left', render: $.fn.dataTable.render.number(',', '.', 2, '')},  
-            {data: 'cash', name: 'cash', class:'text-left', render: $.fn.dataTable.render.number(',', '.', 2, '')},  
-            {data: 'incomeToday', name: 'incomeToday', class:'text-left', render: $.fn.dataTable.render.number(',', '.', 2, '')},  
-            // {data: null, render: function(data, type, row){
-            //     return parseFloat(row.incomeToday - row.cashoutDaily).toFixed(2) }
-            // },
-            {data: 'created_at', name: 'created_at', class:'text-capitalize'},
-        ],
-        
-    });
-   
-
-
-    // SHOW ADD MODAL
-    $('#addCashout').click(function () {
-        $('#id').val('');
-        $('#cashoutForm').trigger("reset");
-        $('#addModal').modal('show');
-        $('#error').html('');
-    });
-
-    // add function
-    $('#savedata').click(function (e) {
-        e.preventDefault();
-        $.ajax({
-            data: $('#cashoutForm').serialize(),
-            url: "{{ url('admin/cashouts/store') }}",
-            type: "POST",
-            dataType: 'json',
-            success: function (data) {
-                $('#cashoutForm').trigger("reset");
-                $('#addModal').modal('hide');
-                table.draw();
-                toastr.success('Cashout saved successfully','Success');
+            {data: 'created_at', name: 'created_at', class:'text-left'},  
+            {data: 'dailySales', name: 'dailySales', class:'text-left', render: $.fn.dataTable.render.number(',', '.', 2, '')},  
+            {data: 'dailyExpenses', name: 'dailyExpenses', class:'text-left', render: $.fn.dataTable.render.number(',', '.', 2, '')},  
+            {data: null, class: 'text-right',  render: function(data, type, row){
+                return parseFloat(row.dailySales - row.dailyExpenses).toFixed(2)}
             },
-            error: function (data) {
-                console.log('Error:', data);
-                toastr.error(data['responseJSON']['message'],'Error has occured');
-            }
-        });
+        ],
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'spacer',
+                style: '',
+                text: 'Export files'
+            },
+            'spacer',
+            'csv',
+            'spacer',
+            'pdf',
+            'spacer',
+            'print'
+        ]
     });
-
-
-    // DELETE 
-    $('body').on('click', '.deleteCashout', function () {
-      var id = $(this).data("id");
-        if (confirm("Are You sure want to delete this product?") === true) {
-            $.ajax({
-                type: "DELETE",
-                url: "{{ url('admin/cashouts/destroy') }}",
-                data:{
-                  id:id
-                },
-                success: function (data) {
-                  table.draw();
-                  toastr.success('Cashout deleted successfully','Success');
-                },
-                error: function (data) {
-                  toastr.error(data['responseJSON']['message'],'Error has occured');
-                }
-            });
-        }
-
-    });
-
 });
 
 </script>

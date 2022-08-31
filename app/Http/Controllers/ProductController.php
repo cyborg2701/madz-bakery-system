@@ -9,7 +9,6 @@ use App\Models\Category;
 use App\Models\Transaction;
 use DataTables;
 
-
 class ProductController extends Controller
 {
     /**

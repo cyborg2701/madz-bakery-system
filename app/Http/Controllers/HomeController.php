@@ -32,149 +32,92 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-        $lastTransId = Transaction::select('transactionId')->latest()->first();
-
-        return view('home', compact('lastTransId'));
+        return view('home');
     }
 
     public function adminHome()
     {
         // current date
-        $currentDate = Carbon::now()->toDateString();
+        $date = Carbon::now()->toDateString();
 
-        //current week
+         // current month
+         $month = Carbon::now()->format('n');
+
+
+        // DAILY GROSS SALES
+        $dailyGross = DB::table('sales')
+                        ->whereDate('created_at', $date)
+                        ->sum('total');
+
+        // DAILY EXPENSES
+        $dailyExpenses = DB::table('cashouts')
+                        ->whereDate('created_at', $date)
+                        ->sum('expenseAmount');
+        //DAILY NET SALES
+        $dailyNet = $dailyGross - $dailyExpenses;
+
+        
+        // GROSS WEEKLY SALES
+        $weeklyGross = DB::table('sales')
+                        ->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
+                        ->sum('total');
+        // WEEKLY EXPENSES
+        $weeklyExpenses = DB::table('cashouts')
+                        ->whereBetween('created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])
+                        ->sum('expenseAmount');
+
+        //DAILY NET SALES
+        $weeklyNet = $weeklyGross - $weeklyExpenses;
+
+
+        // MONTHLY GROSS SALES
+        $monthlyGross = DB::table('sales')
+                        ->whereMonth('created_at', $month)
+                        ->sum('total');
+
+        // MONTHLY EXPENSES
+        $monthlyExpenses = DB::table('cashouts')
+                        ->whereMonth('created_at', $month)
+                        ->sum('expenseAmount');
+
+        // EXPENDITURE MONTHLY EXPENSES
+        $monthlyExpenditures = DB::table('expenditures')
+                        ->whereMonth('created', $month)
+                        ->sum('expenditureAmount');
+
+        //MONTHLY NET SALES
+        $monthlyNet = $monthlyGross - ($monthlyExpenses + $monthlyExpenditures);
+
+        //TOTAL SALES
+
+        $totalSales = DB::table('sales')
+                    ->sum('total');
+        $totalExpenses = DB::table('expenses')
+                    ->sum('expensesTotal');
+        $totalExpenditures = DB::table('expenditures')
+                    ->sum('expenditureAmount');
+
+        $overAllSales = $totalSales - ($totalExpenses + $totalExpenditures);
+
+
         
 
-        // current month
-        $currentMonth = Carbon::now()->format('n');
-
-        //total cashout
-        $totalCashout = DB::table('cashouts')
-                            ->sum('amount');
-
-        // daily cashout
-        $cashoutDaily = DB::table('cashouts')
-                    ->whereDate('created_at', $currentDate)
-                    ->sum('amount');
-
-        // weekly cashout
-        $cashoutWeekly = DB::Table('cashouts')
-                    ->whereBetween('created_at', [Carbon::now()->startOfWeek(Carbon::SUNDAY), Carbon::now()->endOfWeek(Carbon::SATURDAY)])
-                    ->sum('amount');
-
-          // monhtly cashout
-        $cashoutMonthly = DB::table('cashouts')
-                    ->whereMonth('created_at', $currentMonth)
-                    ->sum('amount');
-
-        // total expenditures
-        $totalExpenditure = DB::table('expenses')
-                            ->sum('expensesTotal');
-
-
-        //expenditures daily
-        $expendturesDaily = DB::table('expenditures')
-                                    ->whereDate('created_at', $currentDate)
-                                    ->sum('expenditureAmount');           
-        // expenditures weeekly
-        $expendturesWeekly = DB::table('expenditures')
-                                    ->whereBetween('created_at', [Carbon::now()->startOfWeek(Carbon::SUNDAY), Carbon::now()->endOfWeek(Carbon::SATURDAY)])
-                                    ->sum('expenditureAmount');
-                                
-
-        // expenditures monthly
-        $expendturesMonthly = DB::table('expenditures')
-                                    ->whereMonth('created', $currentMonth)
-                                    ->sum('expenditureAmount');
-
-                    
-        // gross total sales
-        $grossTotalSales = DB::table('transactions')
-                    ->sum('subTotal');
-
-        // daily sales
-        $grossDailySales = DB::table('transactions')
-                    ->whereDate('created_at', $currentDate)
-                    ->sum('subTotal');
-
-        // weekly sales
-        $grossWeeklySales = DB::Table('transactions')
-                    ->whereBetween('created_at', [Carbon::now()->startOfWeek(Carbon::SUNDAY), Carbon::now()->endOfWeek(Carbon::SATURDAY)])
-                    ->sum('subTotal');
-
-                    
-        // monthly sales
-        $grossMonthlySales = DB::table('transactions')
-                    ->whereMonth('created_at', $currentMonth)
-                    ->sum('subTotal');
-
-        // cash daily 
-        $cashDaily = DB::table('cashes')
-                    ->whereDate('created_at', $currentDate)
-                    ->sum('cashToday');
-        
-        // cash daily 
-        $cashWeekly = DB::table('cashes')
-                    ->whereBetween('created_at', [Carbon::now()->startOfWeek(Carbon::SUNDAY), Carbon::now()->endOfWeek(Carbon::SATURDAY)])
-                    ->sum('cashToday');
-
-         // cash mothly 
-        $cashMonthly = DB::table('cashes')
-                    ->whereMonth('created_at', $currentMonth)
-                    ->sum('cashToday');
-
-        //total cash
-        $cashTotal = DB::table('cashes')
-                    ->sum('cashToday');
-
-
-
-        // daily sales less daily cashout
-        $netIncomeDaily = ($cashDaily + $grossDailySales) - $cashoutDaily;
-
-        // weekly sales less weekly cashout
-        $netIncomeWeekly = ($cashWeekly + $grossWeeklySales) - $cashoutWeekly;
-
-        // monthly income sales
-        $netMonthlySales = ($cashMonthly +$grossMonthlySales) - ($cashoutMonthly + $expendturesMonthly);
-
-        // total sales less total cashout
-        $netIncomeTotal = ($cashTotal) + $grossTotalSales - ($totalCashout + $totalExpenditure);
-        
-
-        return view('/admin/home', compact('netIncomeTotal', 'netIncomeDaily', 'netMonthlySales', 'netIncomeWeekly'));
+        return view('/admin/home', compact('dailyNet', 'weeklyNet', 'monthlyNet', 'overAllSales'));
     }
 
     public function saveTransaction(Request $request)
     {
         $date = Carbon::now()->toDateString();
 
-        $transid = $request->transactionId;
-        $price = $request->price;
-        $qty = $request->qty;
-        $subtotal = $request->subtotal;
-
-        for($i=0; $i< count($qty); $i++){
-            $datasave = [
-                'transactionId' => $transid,
-                'price' => $price[$i],
-                'qty' => $qty[$i],
-                'subTotal' => $subtotal[$i],
-                'created_at' => $date
-            ];
-         DB::table('transactions')->insert($datasave);
-        }
-
-        $getLastTotal = DB::table('transactions')
+        $getLastTotal = DB::table('sales')
                     ->whereDate('created_at', $date)
-                    ->sum('subTotal');
+                    ->sum('total');
 
         Sale::updateOrCreate([
             'created_at' => $date
         ],
         [
-            'total' => $request->total + $getLastTotal - $request->total
+            'total' => $getLastTotal + $request->total
         ]);
         return response()->json(['success'=>'Transaction saved successfully.']);
     }

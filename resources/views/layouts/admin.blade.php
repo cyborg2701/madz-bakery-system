@@ -10,19 +10,8 @@
 
     <title>{{ config('MZ Sales Management System', 'MZ Sales Management System') }}</title>
 
-    <!-- Fonts -->
-    <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
-    <!-- datatables CSS -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css"/>
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
-
-    <!-- Favicon -->
-    <link href="{{ asset('img/favicon.png') }}" rel="icon" type="image/png">
-    {{-- toastr --}}
-    <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}">
+    @include('layouts.script')
+    @include('layouts.css')
 </head>
 <body id="page-top">
 
@@ -43,40 +32,28 @@
         <hr class="sidebar-divider my-0">
 
         <!-- Nav Item - Dashboard -->
-        <li class="nav-item {{ Nav::isRoute('admin.home') }}">
+        <li class="nav-item {{ Nav::isRoute('admin.home') }}" id="dashboard"> 
             <a class="nav-link" href="{{ route('admin.home') }}">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <i class="fas fa-fw fa-home"></i>
                 <span>{{ __('Dashboard') }}</span></a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.categories') }}">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>{{ __('Category') }}</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.products') }}">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
+        <li class="nav-item products">
+            <a class="nav-link" href="{{ route('admin.products') }}" id="products">
+                <i class="fas fa-fw fa-tag" id="prodIcon"></i>
                 <span>{{ __('Products') }}</span></a>
         </li>
         
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.cashout') }}">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>{{ __('Cashout') }}</span></a>
+            <a class="nav-link" href="{{ route('admin.expense') }}" id="purchases">
+                <i class="fas fa-fw fa-route" id="purchIcon"></i>
+                <span>{{ __('Purchases') }}</span></a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.expenditures') }}">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>{{ __('Expenditures') }}</span></a>
+            <a class="nav-link" href="{{route('admin.transaction')}}" id="transactions">
+                <i class="fas fa-fw fa-money-bill-alt" id="transIcon"></i>
+                <span>{{ __('Sales') }}</span></a>
         </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.cash') }}">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>{{ __('Cash') }}</span></a>
-        </li>
-
 
                  <!-- Divider -->
          <hr class="sidebar-divider">
@@ -86,9 +63,9 @@
              {{ __('Reports') }}
          </div> 
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.sales') }}">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>{{ __('Sales') }}</span></a>
+            <a class="nav-link" href="{{ route('admin.sales.daily') }}" id="sales">
+                <i class="fas fa-fw fa-file-alt" id="salesIcon"></i>
+                <span>{{ __('Summary') }}</span></a>
         </li>
 
 
@@ -371,14 +348,6 @@
     </div>
 </div>
 
-<!-- Scripts -->
-<script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
-<script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-<script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
-<script src="{{ asset('js/toastr.min.js') }}"></script>
-
+@stack('scripts')
 </body>
 </html>

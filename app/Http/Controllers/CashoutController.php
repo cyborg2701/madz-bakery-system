@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Cashout;
+use App\Models\Expense;
 use DataTables;
 use Carbon\Carbon;
 
@@ -53,16 +54,37 @@ class CashoutController extends Controller
      */
     public function store(Request $request)
     {
+        $date = Carbon::now()->toDateString();
+        // validate
         $request->validate([
-            'cashoutName' => 'required',
-            'amount' => 'required|numeric',
+            'expenseType' => 'required',
+            'expenseName' => 'required',
+            'expenseAmount' => 'required|numeric'
+        ]);
+        // insert
+        $expenses = Cashout::updateOrCreate([
+            'id' => $request->id
+        ],[
+            'expenseType' => $request->expenseType,
+            'expenseName' => $request->expenseName,
+            'expenseAmount' => $request->expenseAmount,
+            'expenseRemarks' => $request->expenseRemarks,
+            'created' => $date
         ]);
 
-        $cashout = Cashout::create([
-            'cashoutName' => $request->cashoutName,
-            'amount' => $request->amount,
-        ]);
-        return response()->json(['success'=>'Cashout saved successfully.']);
+        $getLastExpense= DB::table('cashouts')
+            ->whereDate('created', $date)
+            ->sum('expenseAmount');
+        
+        Expense::updateOrCreate(
+            [
+                'created' => $date
+            ],
+            [
+                'expensesTotal' =>  $request->expenseAmount + $getLastExpense - $request->expenseAmount
+            ]
+        );
+        return response()->json(['success'=>'Expense saved successfully.']);
     }
 
     /**
@@ -82,9 +104,11 @@ class CashoutController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        $expense  = Cashout::where('id', $request->id)
+                            ->first();
+        return response()->json($expense,);
     }
 
     /**
@@ -105,8 +129,25 @@ class CashoutController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $date = Carbon::now()->toDateString();
+        $expenses = Cashout::where('id', $request->id)->delete();
+
+        $getLastExpense= DB::table('cashouts')
+        ->whereDate('created', $date)
+        ->sum('expenseAmount');
+    
+        Expense::updateOrCreate(
+            [
+                'created' => $date
+            ],
+            [
+                'expensesTotal' => $getLastExpense - $request->expenseAmount
+            ]
+        );
+        return response()->json([
+            'success'=>'Expense deleted successfully.'
+        ]);
     }
 }

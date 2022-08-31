@@ -1,13 +1,30 @@
 @extends('layouts.admin')
-
+<style>
+    #products, #prodIcon {
+        font-weight: 700;
+        color: white;
+        font-style: italic;
+    }
+</style>
 @section('main-content')
-    <h1 class="h3 mb-2 text-gray-800" hidden>{{ __('Employee List') }}</h1>
-    <div class="text-right">
-    <!-- Button trigger modal -->
-        <a href="javascript:void(0)" class="btn btn-primary" btn-sm id="addProduct">Add Product</a>
-        <a href="javascript:void(0)" class="btn btn-danger" btn-sm id="optimize">Clear</a>
-
+<div class="row">
+    <div class="col-md-8">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link active">Product's List</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{'category'}}">Category's List</a>
+            </li>
+        </ul>
     </div>
+    <div class="col-md-4 text-right">
+        <!-- Button trigger modal -->
+        <a href="javascript:void(0)" class="btn btn-primary" id="addProduct">Add Product</a>
+    </div>
+</div>
+
+
     <div class="mt-2">
         <table class="table table-bordered data-table nowrap" style="width:100%">
             <thead>
@@ -82,6 +99,19 @@ $(document).ready(function(){
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
+    toastr.options = {
+                "debug": false,
+                "newestOnTop": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": true,
+                "showDuration": "300",
+                "hideDuration": "500",
+                "timeOut": "3000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
     // load table
     var table = $('.data-table').DataTable({
         processing: true,
@@ -128,8 +158,6 @@ $(document).ready(function(){
         });
     });
 
-
-    // edit modal
      // EDIT
      $('body').on('click', '.editProduct', function () {
                 $('#savedata').html('Update');
@@ -153,7 +181,6 @@ $(document).ready(function(){
             });
 
 
-
     // DELETE  
     $('body').on('click', '.deleteProduct', function () {
       var id = $(this).data("id");
@@ -167,27 +194,6 @@ $(document).ready(function(){
                 success: function (data) {
                   table.draw();
                   toastr.success('Product deleted successfully','Success');
-                },
-                error: function (data) {
-                  toastr.error(data['responseJSON']['message'],'Error has occured');
-                }
-            });
-        }
-
-    });
-
-    $('body').on('click', '#optimize', function () {
-      var id = $(this).data("id");
-        if (confirm("Are You sure want to optimize transactions table?") === true) {
-            $.ajax({
-                type: "DELETE",
-                url: "{{ url('admin/product/optimize') }}",
-                data:{
-                  id:id
-                },
-                success: function (data) {
-                  table.draw();
-                  toastr.success('Transactions table optimized successfully','Success');
                 },
                 error: function (data) {
                   toastr.error(data['responseJSON']['message'],'Error has occured');
