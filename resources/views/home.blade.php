@@ -10,14 +10,12 @@
                     TOTAL
                 </button>
             </span>
-            <span class="input-group-prepend">
+            
                 <input type="text" name="total" id="total" class="form-control form-control-lg  text-right" readonly>
-            </span>
+          
             <span class="input-group-prepend">
                 <button id="saveTransaction" name="saveTransaction" type="button" class="btn btn-primary btn-lg ml-2">Save</button>
             </span>
-
-               
         </div>
     </div>
 </div>
