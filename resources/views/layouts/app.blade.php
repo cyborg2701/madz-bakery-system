@@ -37,11 +37,11 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{route('user.home')}}">
-                    Maderazo Bakery
+                    Tablet Mode
                 </a>
                 <ul class="nav justify-content-center">
                     <li class="nav-item">
-                      <a class="nav-link" href="{{route('user.home2')}}">Home v2</a>
+                      <a class="nav-link" href="{{route('user.home2')}}">Phone Mode</a>
                     </li>
                   </ul>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

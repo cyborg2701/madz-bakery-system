@@ -35,7 +35,7 @@
                 </span>
                 {{-- SRP --}}
 
-                    <input type="number" id="manualInput"  class="form-control-lg text-right num m-1" value="0">
+                    <input type="number" id="manualInput"  class="form-control form-control-lg text-right num m-1" value="0">
 
             </div>
 
