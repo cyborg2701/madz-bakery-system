@@ -1,4 +1,9 @@
 @extends('layouts.app')
+<style>
+    #home a {
+        color: black !important;
+        }
+</style>
 
 @section('content')
 <form action="" id="transactionForm" name="transactionForm" enctype="multipart/form-data">
@@ -6,16 +11,16 @@
     <div class="col-lg-6">
         <div class="input-group">
             <span class="input-group-prepend">
-                <button type="button" class="btn btn-info" id="btnTotal">
+                <button type="button" class="btn btn-outline-info" id="btnTotal">
                     TOTAL
                 </button>
             </span>
-            
                 <input type="text" name="total" id="total" class="form-control form-control-lg  text-right" readonly>
-          
-            <span class="input-group-prepend">
-                <button id="saveTransaction" name="saveTransaction" type="button" class="btn btn-primary btn-lg ml-2">Save</button>
-            </span>
+                <span class="input-group-prepend">
+                    <button id="saveTransaction" name="saveTransaction" type="button" class="btn btn-primary btn-lg ml-2" style="width:100%">
+                        <i class="fas fa-fw fa-save"></i> 
+                         Save</button>
+                </span> 
         </div>
     </div>
 </div>

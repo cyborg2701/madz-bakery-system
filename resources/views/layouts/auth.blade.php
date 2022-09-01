@@ -17,8 +17,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
 
-    <!-- Favicon -->
-    <link href="{{ asset('img/favicon.png') }}" rel="icon" type="image/png">
+     <!-- Favicon -->
+ <link href="{{ asset('img/bakerylogo2.png') }}" rel="icon" type="image/png">
 </head>
 <body class="bg-gradient-primary min-vh-100 d-flex justify-content-center align-items-center">
 

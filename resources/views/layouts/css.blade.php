@@ -12,6 +12,6 @@
  <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.2.4/css/fixedHeader.bootstrap.min.css">
  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap.min.css">
  <!-- Favicon -->
- <link href="{{ asset('img/favicon.png') }}" rel="icon" type="image/png">
+ <link href="{{ asset('img/bakerylogo2.png') }}" rel="icon" type="image/png">
  {{-- toastr --}}
  <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}">

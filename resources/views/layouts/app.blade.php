@@ -20,29 +20,29 @@
     <!-- Fonts -->
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
     
+     <!-- Favicon -->
+     <link href="{{ asset('img/bakerylogo2.png') }}" rel="icon" type="image/png">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-
-    
-
-    
-
-        {{-- toastr --}}
-        <link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
+    {{-- toastr --}}
+    <link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
-                <a class="navbar-brand" href="{{route('user.home')}}">
-                    Tablet Mode
-                </a>
+                    {{-- <a class="navbar-brand active" href="{{route('user.home')}}">
+                        Tablet Mode
+                    </a> --}}
                 <ul class="nav justify-content-center">
-                    <li class="nav-item">
-                      <a class="nav-link" href="{{route('user.home2')}}">Phone Mode</a>
+                    <li class="nav-item" id="home">
+                      <a class="nav-link" href="{{route('user.home')}}">Tablet Mode</a>
                     </li>
+                    <li class="nav-item" id="home2">
+                        <a class="nav-link" href="{{route('user.home2')}}">Phone Mode</a>
+                      </li>
                   </ul>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
