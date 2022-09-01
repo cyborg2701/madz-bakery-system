@@ -21,10 +21,6 @@
                 </li>
             </ul>
         </div>
-        <div class="col-md-4 text-right">
-            <!-- Button trigger modal -->
-    <a href="javascript:void(0)" class="btn btn-primary" btn-sm id="addProduct">Add Category</a>
-        </div>
     </div>
     <div class="mt-2">
         <table class="table table-bordered data-table nowrap" style="width:100%">
