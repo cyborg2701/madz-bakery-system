@@ -59,7 +59,7 @@
             <div class="modal-body">
                 <form id="cashoutForm" name="cashoutForm" enctype="multipart/form-data">
                     <input type="hidden" name="id" id="id">
-                    <input type="" id="created">
+                    <input type="hidden" id="created">
                     <div class="form-group row">
                         <label for="expenseType" class="col-sm-2 col-form-label">Type:</label>
                         <div class="col-sm-10">
